@@ -14,13 +14,13 @@ const unauthFile = "playwright/.auth/unauth.json";
 setup("authenticate as admin", async ({ page }) => {
   await page.goto(loginUrl);
 
-  await page.getByLabel('Username or Email Address').fill(`${process.env.ADMIN_USER}`);
-  await page.getByLabel('Password', { exact: true }).fill(`${process.env.PASS}`);
-  await page.getByLabel('Remember Me').check();
-  await page.getByRole('button', { name: 'Log In' }).click();
-  
+  await page.getByLabel("Username or Email Address").fill(`${process.env.ADMIN_USER}`);
+  await page.getByLabel("Password", { exact: true }).fill(`${process.env.PASS}`);
+  await page.getByLabel("Remember Me").check();
+  await page.getByRole("button", { name: "Log In" }).click();
+
   await page.waitForURL(`${process.env.BASE_URL}/wp-admin/`);
-  await expect(page.getByRole('heading', { name: 'Dashboard' })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Dashboard" })).toBeVisible();
 
   await page.context().storageState({ path: adminFile });
 });
