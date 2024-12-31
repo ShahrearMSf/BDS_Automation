@@ -7,9 +7,12 @@ config();
 export default defineConfig({
   testDir: "./tests",
   fullyParallel: true,
+  retries: process.env.CI ? 1 : 1,
+  workers: process.env.CI ? 2 : 4,
+  timeout: 30 * 1000,
 
   expect: {
-    timeout: 30_000,
+    timeout: 5_000,
     toMatchSnapshot: { maxDiffPixelRatio: 0.03 },
     toHaveScreenshot: { maxDiffPixelRatio: 0.03 },
   },
@@ -29,6 +32,10 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    {
+      name: "setup",
+      testMatch: /.*\.setup\.js/,
+    },
     {
       name: "chromium",
       use: { ...devices["Desktop Chrome"] },
