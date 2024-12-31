@@ -7,9 +7,6 @@ config();
 export default defineConfig({
   testDir: "./tests",
   fullyParallel: true,
-  retries: process.env.CI ? 1 : 1,
-  workers: process.env.CI ? 2 : 2,
-  timeout: 30 * 1000,
 
   expect: {
     timeout: 5_000,
