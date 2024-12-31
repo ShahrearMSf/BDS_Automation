@@ -189,7 +189,7 @@ Distributed under the Unlicense License. See `LICENSE.txt` for more information.
 
 Abu Hurayra - [@hurayraiit](https://twitter.com/hurayraiit) - hurayraiit@gmail.com
 <br>
-Muammar Shahrear - [@Muammar Shahrear] (https://www.linkedin.com/in/muammarshahrear/) - shahrearmuammar@gmail.com
+Muammar Shahrear - [@Muammar Shahrear](https://www.linkedin.com/in/muammarshahrear/- shahrearmuammar@gmail.com
 
 Project Link: [https://github.com/ShahrearMSf/BDS_Automation](https://github.com/ShahrearMSf/BDS_Automation)
 
