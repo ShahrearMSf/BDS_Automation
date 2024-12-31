@@ -2,15 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('test', async ({ page }) => {
   await page.goto('https://demo.betterdocs.co/category-sleek-layout/');
-  //   await page.goto('https://demo.betterdocs.co/category-sleek-layout/');
-  //   await page.getByRole('link', { name: 'Release Notes 4 Docs Last' }).click();
-  //   await page.goto('https://demo.betterdocs.co/category-sleek-layout/');
-  //   await page.getByRole('link', { name: 'Troubleshooting 4 Docs Last' }).click();
-  //   await page.goto('https://demo.betterdocs.co/category-sleek-layout/');
-  //   await page.getByRole('link', { name: 'Use Cases 4 Docs Last Updated' }).click();
-  //   await page.getByRole('link', { name: 'Community & Support 4 Docs' }).click();
-
-  //await expect(page.getByRole('link', { name: 'Community & Support 4 Docs' })).toBeVisible();
+  
 
   const widgetLocator = page.getByTestId("585b432");
   const categoryBoxes = widgetLocator.locator("div.betterdocs-categories-folder");
