@@ -133,3 +133,4 @@ dist
 /blob-report/
 /playwright/.cache/
 .DS_Store
+playwright/.auth/
