@@ -7,6 +7,9 @@ config();
 export default defineConfig({
   testDir: "./tests",
   fullyParallel: true,
+  retries: process.env.CI ? 1 : 1,
+  workers: process.env.CI ? 2 : 4,
+  timeout: 30 * 1000,
 
   expect: {
     timeout: 5_000,
@@ -29,6 +32,10 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    {
+      name: "setup",
+      testMatch: /.*\.setup\.js/,
+    },
     {
       name: "chromium",
       use: { ...devices["Desktop Chrome"] },
