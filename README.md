@@ -125,7 +125,7 @@ _Below is an example of how you can instruct your audience on installing and set
 5. Create storage state files.
   ```sh
   mkdir -p playwright/.auth && cd playwright/.auth
-  for role in admin editor author contributor subscriber; do echo "{}" > "$role.json"; done
+  for role in admin editor author contributor subscriber unauth; do echo "{}" > "$role.json"; done
   ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
