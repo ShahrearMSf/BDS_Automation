@@ -25,35 +25,47 @@ test('test', async ({ page }) => {
 
     await expect(Body).toBeVisible();
 
-    // const bodyoneheading = bodyoneSection.locator("h2");
-    // await expect(bodyoneheading).toBeVisible();
-    // await expect(bodyoneheading).toHaveText("Getting Started");
+    const gridWrapper = page.locator(".betterdocs-category-grid-inner-wrapper");
+    await expect(gridWrapper).toBeVisible();
   
-    // const articleSelectors = [
-    //   'li:nth-of-type(1)', 
-    //   'li:nth-of-type(2)', 
-    //   'li:nth-of-type(3)', 
-    //   'li:nth-of-type(4)', 
-    //   'li:nth-of-type(5)', 
-    //   'li:nth-of-type(6)', 
-    //   'li:nth-of-type(7)', 
-    //   'li:nth-of-type(8)', 
-    // ];
+    // 8 sections
+    const sections = gridWrapper.locator(".betterdocs-single-category-wrapper");
+    const sectionCount = await sections.count();
   
+    // count the 8 sections bro
+    expect(sectionCount).toBe(8);
   
-    // const expectedArticles = [
-      
-    // "How To Sign Up For Updates?",
-    // "How To Customize Your Preferences?",
-    // "How To Purchase Our Subscription?",
-    // "Do You Have Any Refund Or Return Policies?",
-    // ];
+    // each section
+    for (let i = 0; i < sectionCount; i++) {
+      const section = sections.nth(i);
   
-    // for (let i = 0; i < articleSelectors.length; i++) {
-    //   const article = popularDocsSection.locator(articleSelectors[i]);
-    //   await expect(article).toBeVisible();
-    //   await expect(article).toHaveText(expectedArticles[i]);}
+      // section icon
+      const icon = section.locator(".betterdocs-category-icon img");
+      await expect(icon).toBeVisible();
+      await expect(icon).toHaveAttribute("src", /.+/);
   
-
-
+      // section title
+      const title = section.locator(".betterdocs-category-title");
+      await expect(title).toBeVisible();
+  
+      // each section has 4 article
+      const articles = section.locator(".betterdocs-articles-list li");
+      const articleCount = await articles.count();
+      expect(articleCount).toBe(4); // Ensure exactly 4 articles per section
+  
+      for (let j = 0; j < articleCount; j++) {
+        const article = articles.nth(j);
+  
+        // articles' link and title
+        const articleLink = article.locator("a");
+        await expect(articleLink).toBeVisible();
+        await expect(articleLink).toHaveAttribute("href", /.+/);
+      }
+  
+      // "View More" button for all the 8 sections
+      const viewMoreButton = section.locator(".betterdocs-category-link-btn");
+      await expect(viewMoreButton).toBeVisible();
+      await expect(viewMoreButton).toHaveAttribute("href", /.+/);
+    }
+  
 });
