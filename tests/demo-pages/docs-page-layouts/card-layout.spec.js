@@ -18,8 +18,8 @@ test('test', async ({ page }) => {
   const eighthCategory = Heading.locator("a").nth(7);
   const ninthCategory = Heading.locator("a").nth(8);
   const tenththCategory = Heading.locator("a").nth(9);
-  const twelvethCategoryCategory = Heading.locator("a").nth(10);
-  const thirteenthCategory = Heading.locator("a").nth11);
+  const eleventhCategoryCategory = Heading.locator("a").nth(10);
+  const twelvethCategoryCategory = Heading.locator("a").nth(11);
 
   const icon = firstCategory.locator("div.betterdocs-category-icon");
   const heading = firstCategory.getByRole("heading", { name: "Getting Started" });
