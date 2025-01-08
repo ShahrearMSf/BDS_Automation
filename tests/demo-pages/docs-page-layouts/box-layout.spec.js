@@ -24,6 +24,6 @@ test('test', async ({ page }) => {
 
   await expect.soft(icon).toBeVisible();
   await expect.soft(heading).toBeVisible();
-  await expect.soft(count).toHaveText(/\d+Articles/);  //no gap between doc number and string
+  await expect.soft(count).toHaveText(/\d+Articles/);  //no gap between doc number and string, point to be noted
 
 });
