@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test';
 test('test', async ({ page }) => {
-  await page.goto('https://demo.betterdocs.co/card-layout/');
+  await page.goto('https://demo.betterdocs.co/');
 
 
-  const headingLocator = page.getByTestId("314f2e7");
+  const headingLocator = page.getByTestId("2146e7f");
   const Heading = headingLocator.locator("div.elementor-element");
 
   await expect(Heading).toBeVisible();
@@ -16,17 +16,14 @@ test('test', async ({ page }) => {
   const sixthCategory = Heading.locator("a").nth(5);
   const seventhCategory = Heading.locator("a").nth(6);
   const eighthCategory = Heading.locator("a").nth(7);
-  const ninthCategory = Heading.locator("a").nth(8);
-  const tenththCategory = Heading.locator("a").nth(9);
-  const eleventhCategoryCategory = Heading.locator("a").nth(10);
-  const twelvethCategoryCategory = Heading.locator("a").nth(11);
 
-  const icon = firstCategory.locator("div.betterdocs-category-icon");
+
+  const icon = firstCategory.locator("div.eael-bd-cb-inner");
   const heading = firstCategory.getByRole("heading", { name: "Getting Started" });
-  const count = firstCategory.locator("div.betterdocs-category-items-counts");
+  const count = firstCategory.locator("div.eael-bd-cb-cat-count");
 
   await expect.soft(icon).toBeVisible();
   await expect.soft(heading).toBeVisible();
-  await expect.soft(count).toHaveText(/\d+ articles/);
+  await expect.soft(count).toHaveText(/\d+Articles/);  //no gap between doc number and string, point to be noted
 
 });
