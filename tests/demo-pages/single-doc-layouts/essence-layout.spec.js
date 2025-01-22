@@ -50,14 +50,13 @@ test.describe('Troubleshooting Sleek Layout Tests', () => {
     `);
   });
 
-//checking whether we can able to search or not and getting the search
+//checking whether we can able to search or not and getting the search, details search is given at the end
 
   test('Perform Search Actions', async ({ page }) => {
     await page.getByText('Search..', { exact: true }).click();
     await page.getByPlaceholder('Search..', { exact: true }).fill('troubl');
     await page.getByText('Troubleshooting Sleek LayoutTroubleshooting').click();
     await page.getByPlaceholder('Search..', { exact: true }).fill('troubleshooting');
-    await page.getByPlaceholder('Search..', { exact: true }).dblclick();
     await page.getByText('Troubleshooting Sleek LayoutTroubleshooting').click();
   });
 
@@ -118,7 +117,68 @@ test.describe('Troubleshooting Sleek Layout Tests', () => {
     const page1 = await page1Promise;
     await page1.close();
   });
-});
+
+
+//deatils search. will make a separate section for search. this is just the demo will refine in another section(code)
+
+// test('Search Bar Interactions', async ({ page }) => {
+//     await page.getByText('Search..⌘ K').click();
+//     await page.getByPlaceholder('Search..', { exact: true }).fill('trouble');
+//     await page.getByText('Troubleshooting Sleek LayoutTroubleshooting').click();
+//     await page.locator('.clear-icon').click();
+//   });
+
+//   test('FAQ and Troubleshooting Search', async ({ page }) => {
+//     await page.getByPlaceholder('Search..', { exact: true }).fill('why does the sleek');
+//     await page.getByText('Why does the Sleek Layout look different on my mobile device?').click();
+//     await page.getByText('Ensure that the responsive settings are properly configured.').click();
+
+//     await page.getByPlaceholder('Search..', { exact: true }).fill('how can I reset');
+//     await page.getByText('How can I reset the Sleek Layout if nothing else works?').click();
+//     await page.getByText('If you have tried the following steps and they did not work, reset your layout.').click();
+//   });
+
+//   test('No Results Handling', async ({ page }) => {
+//     await page.getByPlaceholder('Search..', { exact: true }).fill('random non-existing query');
+//     await page.getByRole('heading', { name: 'No Docs found for "random non-existing query"' }).click();
+//     await page.locator('.clear-icon').click();
+//   });
+
+//   test('Developer Tools Section', async ({ page }) => {
+//     await page.getByPlaceholder('Search..', { exact: true }).fill('JavaScript errors');
+//     await page.getByText('What can I do if I encounter JavaScript errors while using the Sleek Layout?').click();
+//     await page.getByText('Open your browser’s developer tools and check the console for errors.').click();
+//   });
+
+//   test('Icon Interactions', async ({ page }) => {
+//     await page.locator('.betterdocs-search-header > .doc-search-icon').click(); // Search Icon
+//     await page.locator('.clear-icon').click(); // Clear Search Icon
+//     await page.locator('.betterdocs-search-items-not-found > svg').click(); // No-Results Icon
+//     await page.locator('.content-sub > svg').click(); // Back-to-Content Icon
+//   });
+
+//   test('Escape Key Interactions', async ({ page }) => {
+//     // Open search and close it with Escape key
+//     await page.getByText('Search..⌘ K').click();
+//     await page.keyboard.press('Escape');
+
+//     // Close FAQ modal with Escape
+//     await page.locator('#betterdocs-full-sidebar-left').getByText('FAQ').click();
+//     await page.keyboard.press('Escape');
+
+//     // Close error messages or modal pop-ups
+//     await page.getByPlaceholder('Search..', { exact: true }).fill('random');
+//     await page.keyboard.press('Escape'); // To close search suggestions
+//   });
+
+//   test('Show More Button Interaction', async ({ page }) => {
+//     await page.getByText('Show More').nth(1).click(); // Expand content
+//     await page.getByText('Show Less').nth(1).click(); // Collapse content
+//   });
+
+
+
+// });
 
 
 
