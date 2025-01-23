@@ -119,6 +119,8 @@ test.describe('Troubleshooting Sleek Layout Tests', () => {
   });
 
 });
+
+
 //deatils search. will make a separate section for search. this is just the demo will refine in another section(code)
 
 // test('Search Bar Interactions', async ({ page }) => {
