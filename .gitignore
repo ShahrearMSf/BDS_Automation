@@ -134,3 +134,4 @@ dist
 /playwright/.cache/
 playwright/.auth/
 .DS_Store
+/auth/
