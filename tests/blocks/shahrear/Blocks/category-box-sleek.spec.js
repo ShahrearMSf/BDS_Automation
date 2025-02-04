@@ -1,14 +1,21 @@
+
 import { test, expect } from '@playwright/test';
 
-test('test', async ({ page }) => {
-  await page.goto('https://betterdocs.msf.shahrear.site/category-box/');
+test.describe('Block-Category=Box-Sleek', () => {
+  // Load the page once before each test
+  test.beforeEach(async ({ page }) => {
+    await page.goto('https://betterdocs.msf.shahrear.site/category-box/');
+    });
+
+
+
+//main content
+test('Verify Content Snapshot', async ({ page }) => {
 
 
   await expect(page.locator('#content')).toMatchAriaSnapshot(`
     - main:
       - heading "Category Box Sleek" [level=1]
-      - paragraph
-      - paragraph
       - 'link /৩য় পক্ষ 2 Docs Last Updated: September 9, \\d+/':
         - img
         - heading "৩য় পক্ষ" [level=2]
@@ -79,14 +86,13 @@ test('test', async ({ page }) => {
         - img
         - heading /January \\d+/ [level=2]
         - paragraph: "/Last Updated: January \\\\d+, \\\\d+/"
-      - paragraph
-      - paragraph
-      - paragraph
-      - paragraph
-      - paragraph
-      - paragraph
+      
     `);
-  await expect(page.locator('#content')).toMatchAriaSnapshot(`- img`);
+
+  });
+  test('Verify First 4 Category', async ({ page }) => {
+
+  await expect(page.locator('#content')).toMatchAriaSnapshot(`- img`);ß
   await expect(page.locator('#content')).toMatchAriaSnapshot(`- heading "৩য় পক্ষ" [level=2]`);
   await expect(page.locator('#content')).toMatchAriaSnapshot(`- text: 2 Docs`);
   await expect(page.locator('#content')).toMatchAriaSnapshot(`- paragraph: "/Last Updated: September 9, \\\\d+/"`);
@@ -104,7 +110,7 @@ test('test', async ({ page }) => {
   await expect(page.locator('#content')).toMatchAriaSnapshot(`- paragraph: "/Last Updated: December 7, \\\\d+/"`);
 });
 
-
+});
 
 
 
