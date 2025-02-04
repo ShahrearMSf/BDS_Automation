@@ -2,49 +2,80 @@ import { test, expect } from '@playwright/test';
 
 test('test', async ({ page }) => {
   await page.goto('https://betterdocs.msf.shahrear.site/category-box/');
-  
-
-  const widgetLocator = page.getByTestId("585b432");
-  const categoryBoxes = widgetLocator.locator("div.betterdocs-categories-folder");
-
-  const firstCategory = categoryBoxes.locator("a").nth(0);
-  const secondCategory = categoryBoxes.locator("a").nth(1);
-  const thirdCategory = categoryBoxes.locator("a").nth(2);
-  const fourthCategory = categoryBoxes.locator("a").nth(3);
-  const fifthCategory = categoryBoxes.locator("a").nth(4);
-  const sixthCategory = categoryBoxes.locator("a").nth(5);
-  const seventhCategory = categoryBoxes.locator("a").nth(6);
-  const eighthCategory = categoryBoxes.locator("a").nth(7);
-  const ninthCategory = categoryBoxes.locator("a").nth(8);
-  const tenthCategory = categoryBoxes.locator("a").nth(9);
-  const eleventhCategory = categoryBoxes.locator("a").nth(10);
-  const twelfthCategory = categoryBoxes.locator("a").nth(11);
-  const thirteenthCategory = categoryBoxes.locator("a").nth(12);
-  const fourteenthCategory = categoryBoxes.locator("a").nth(13);
-  const fifteenthCategory = categoryBoxes.locator("a").nth(14);
-  const sixteenthCategory = categoryBoxes.locator("a").nth(15);
-  const seventeenthCategory = categoryBoxes.locator("a").nth(16);
-  const eighteenthCategory = categoryBoxes.locator("a").nth(17);
-  const nineteenthCategory = categoryBoxes.locator("a").nth(18);
-  const twentiethCategory = categoryBoxes.locator("a").nth(19);
-  const twentyFirstCategory = categoryBoxes.locator("a").nth(20);
-  const twentySecondCategory = categoryBoxes.locator("a").nth(21);
-  const twentyThirdCategory = categoryBoxes.locator("a").nth(22);
-  const twentyFourthCategory = categoryBoxes.locator("a").nth(23);
-
-
-  const icon = firstCategory.locator("span.betterdocs-folder-icon > svg");
-  const heading = firstCategory.getByRole("heading", { name: "Community & Support" });
-  const count = firstCategory.locator("div.betterdocs-sub-category-items-counts");
-  const lastUpdated = firstCategory.locator("p.betterdocs-last-update");
-
-  await expect.soft(icon).toBeVisible();
-  await expect.soft(heading).toBeVisible();
-  await expect.soft(count).toHaveText(/\d+ Docs/);
-  await expect.soft(lastUpdated).toHaveText(/Last Updated: \s*\w+ \d+, \d+/);
-
-
-  await expect.soft(secondCategory.getByRole("heading", { name: "Release Notes" })).toBeVisible();
-  await expect.soft(thirdCategory.getByRole("heading", { name: "Troubleshooting" })).toBeVisible();
-  await expect.soft(fourthCategory.getByRole("heading", { name: "Use Cases" })).toBeVisible();
+ 
+  await expect(page.locator('#content')).toMatchAriaSnapshot(`
+    - main:
+      - heading "Category Box Sleek" [level=1]
+      - 'link /৩য় পক্ষ 2 Docs Last Updated: September 9, \\d+/':
+        - img
+        - heading "৩য় পক্ষ" [level=2]
+        - paragraph: "/Last Updated: September 9, \\\\d+/"
+      - 'link /Alif 1 Sub Category \\| 1 Doc Last Updated: November \\d+, \\d+/':
+        - img
+        - heading "Alif" [level=2]
+        - paragraph: "/Last Updated: November \\\\d+, \\\\d+/"
+      - 'link /All In All MSF \\d+ Docs Last Updated: February 2, \\d+/':
+        - heading "All In All MSF" [level=2]
+        - paragraph: "/Last Updated: February 2, \\\\d+/"
+      - 'link /API & Development 2 Docs Last Updated: December 7, \\d+/':
+        - heading "API & Development" [level=2]
+        - paragraph: "/Last Updated: December 7, \\\\d+/"
+      - 'link /Architecture & Infastructure 5 Docs Last Updated: December 9, \\d+/':
+        - img
+        - heading "Architecture & Infastructure" [level=2]
+        - paragraph: "/Last Updated: December 9, \\\\d+/"
+      - 'link /Architektur Infrastruktur 3 Docs Last Updated: November \\d+, \\d+/':
+        - img
+        - heading "Architektur Infrastruktur" [level=2]
+        - paragraph: "/Last Updated: November \\\\d+, \\\\d+/"
+      - 'link /Ba 1 Doc Last Updated: November \\d+, \\d+/':
+        - img
+        - heading "Ba" [level=2]
+        - paragraph: "/Last Updated: November \\\\d+, \\\\d+/"
+      - 'link /Benefit, Reward, Voucher & Promotion Management \\d+ Docs Last Updated: September \\d+, \\d+/':
+        - img
+        - heading "Benefit, Reward, Voucher & Promotion Management" [level=2]
+        - paragraph: "/Last Updated: September \\\\d+, \\\\d+/"
+      - 'link /C 1 Doc Last Updated: November \\d+, \\d+/':
+        - heading "C" [level=2]
+        - paragraph: "/Last Updated: November \\\\d+, \\\\d+/"
+      - 'link /Category December \\d+ 3 Docs Last Updated: December \\d+, \\d+/':
+        - img
+        - heading /Category December \\d+/ [level=2]
+        - paragraph: "/Last Updated: December \\\\d+, \\\\d+/"
+      - 'link /Child 1 2 Docs Last Updated: September 9, \\d+/':
+        - heading "Child 1" [level=2]
+        - paragraph: "/Last Updated: September 9, \\\\d+/"
+      - 'link /Child 2 2 Docs Last Updated: December 7, \\d+/':
+        - heading "Child 2" [level=2]
+        - paragraph: "/Last Updated: December 7, \\\\d+/"
+      - 'link /Config & urations 2 Docs Last Updated: September 9, \\d+/':
+        - heading "Config & urations" [level=2]
+        - paragraph: "/Last Updated: September 9, \\\\d+/"
+      - 'link /December \\d+ 1 Doc Last Updated: December \\d+, \\d+/':
+        - img
+        - heading /December \\d+/ [level=2]
+        - paragraph: "/Last Updated: December \\\\d+, \\\\d+/"
+      - 'link /Einrichtungsprozess 1 Doc Last Updated: November 6, \\d+/':
+        - heading "Einrichtungsprozess" [level=2]
+        - paragraph: "/Last Updated: November 6, \\\\d+/"
+      - 'link /Getting Started 3 Docs Last Updated: December \\d+, \\d+/':
+        - heading "Getting Started" [level=2]
+        - paragraph: "/Last Updated: December \\\\d+, \\\\d+/"
+      - 'link /hello 3 Docs Last Updated: September \\d+, \\d+/':
+        - heading "hello" [level=2]
+        - paragraph: "/Last Updated: September \\\\d+, \\\\d+/"
+      - 'link /hiwf 1 Doc Last Updated: September 9, \\d+/':
+        - img
+        - heading "hiwf" [level=2]
+        - paragraph: "/Last Updated: September 9, \\\\d+/"
+      - 'link /Installation 3 Docs Last Updated: September 9, \\d+/':
+        - heading "Installation" [level=2]
+        - paragraph: "/Last Updated: September 9, \\\\d+/"
+      - 'link /January \\d+ 3 Docs Last Updated: January \\d+, \\d+/':
+        - img
+        - heading /January \\d+/ [level=2]
+        - paragraph: "/Last Updated: January \\\\d+, \\\\d+/"
+      
+    `);
 });
