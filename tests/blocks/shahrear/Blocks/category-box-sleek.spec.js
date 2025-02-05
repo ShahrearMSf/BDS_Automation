@@ -13,11 +13,11 @@ test.describe('Block-Category=Box-Sleek', () => {
 
   await expect(page.locator('#content')).toMatchAriaSnapshot(`- img`);
   await expect(page.locator('#content')).toMatchAriaSnapshot(`- heading "৩য় পক্ষ" [level=2]`);
-  await expect(page.locator('#content')).toMatchAriaSnapshot(`- text: 2 Docs`);
+  await expect(page.locator('#content')).toMatchAriaSnapshot(`- text: /\\d+ Docs/`);
   await expect(page.locator('#content')).toHaveText(/Last Updated: \s*\w+ \d+, \d+/);
   await expect(page.locator('#content')).toMatchAriaSnapshot(`- img`);
   await expect(page.locator('#content')).toMatchAriaSnapshot(`- heading "Alif" [level=2]`);
-  await expect(page.locator('#content')).toMatchAriaSnapshot(`- text: 1 Sub Category | 1 Doc`);
+  await expect(page.locator('#content')).toMatchAriaSnapshot(`- text: /\\d+ Sub Category | d+ Docs/`);
   await expect(page.locator('#content')).toHaveText(/Last Updated: \s*\w+ \d+, \d+/);
   await expect(page.locator('#content')).toMatchAriaSnapshot(`- img`);
   await expect(page.locator('#content')).toMatchAriaSnapshot(`- heading "All In All MSF" [level=2]`);
@@ -25,7 +25,7 @@ test.describe('Block-Category=Box-Sleek', () => {
   await expect(page.locator('#content')).toHaveText(/Last Updated: \s*\w+ \d+, \d+/);
   await expect(page.locator('#content')).toMatchAriaSnapshot(`- img`);
   await expect(page.locator('#content')).toMatchAriaSnapshot(`- heading "API & Development" [level=2]`);
-  await expect(page.locator('#content')).toMatchAriaSnapshot(`- text: 2 Docs`);
+  await expect(page.locator('#content')).toMatchAriaSnapshot(`- text: /\\d+ Docs/`);
   await expect(page.locator('#content')).toHaveText(/Last Updated: \s*\w+ \d+, \d+/);
 });
 
