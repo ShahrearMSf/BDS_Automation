@@ -7,7 +7,7 @@ test.describe('Block-Category=Box-Sleek', () => {
     await page.goto('https://betterdocs.msf.qa378.site/category-box/');
     });
 
-    //so far fist four category
+    //fist four category to check the incidents
 
   test('Verify First 4 Category', async ({ page }) => {
 
