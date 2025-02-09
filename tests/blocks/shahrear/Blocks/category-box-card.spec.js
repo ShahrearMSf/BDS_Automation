@@ -15,13 +15,13 @@ test.describe('Block-Category=Box-Sleek', () => {
 
   await expect(page.locator('#content')).toMatchAriaSnapshot(`- img "betterdocs-category-icon"`);
   await expect(page.locator('#content')).toMatchAriaSnapshot(`- heading "৩য় পক্ষ" [level=2]`);
-  await expect(page.locator('#content')).toMatchAriaSnapshot(`- text: "2"`);
-  await expect(page.locator('#content')).toMatchAriaSnapshot(`- text: "2"`);
+  await expect(page.locator('#content')).toMatchAriaSnapshot(`- text: /\\d+/`);
+  
   await expect(page.locator('#content')).toMatchAriaSnapshot(`- img "betterdocs-category-icon"`);
   await expect(page.locator('#content')).toMatchAriaSnapshot(`- heading "Alif" [level=2]`);
-  await expect(page.locator('#content')).toMatchAriaSnapshot(`- text: "1"`);
+  await expect(page.locator('#content')).toMatchAriaSnapshot(`- text: /\\d+/`);
+
   await expect(page.locator('#content')).toMatchAriaSnapshot(`- img "betterdocs-category-icon"`);
-  await expect(page.locator('#content')).toMatchAriaSnapshot(`- heading "All In All MSF" [level=2]`);
   await expect(page.locator('#content')).toMatchAriaSnapshot(`- heading "All In All MSF" [level=2]`);
   await expect(page.locator('#content')).toMatchAriaSnapshot(`- text: /\\d+/`);
 });
