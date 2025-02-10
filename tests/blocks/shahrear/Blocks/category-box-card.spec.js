@@ -1,7 +1,7 @@
 
 import { test, expect } from '@playwright/test';
 
-test.describe('Block-Category=Box-Sleek', () => {
+test.describe('Block-Category=Box-Card', () => {
   // Load the page once before each test
   test.beforeEach(async ({ page }) => {
     await page.goto('https://betterdocs.msf.qa378.site/category-box-card/');
