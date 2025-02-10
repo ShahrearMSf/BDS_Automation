@@ -7,7 +7,7 @@ test.describe('Block-Category=Box-Classic', () => {
     await page.goto('https://betterdocs.msf.qa378.site/category-box-classic/');
     });
 
-    //fist row to check the incidents
+    //fist row to check
 
   test('Verify First 4 Category', async ({ page }) => {
 
