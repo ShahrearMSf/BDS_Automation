@@ -6,7 +6,7 @@ test.describe('Category Grid Layout 1 Tests', () => {
 
   test.beforeAll(async ({ browser }) => {
     page = await browser.newPage();
-    await page.goto('https://betterdocs.msf.qa378.site/category-grid/');
+    await page.goto(`${process.env.BASE_URL_MSF}/category-grid/`);
     await page.waitForLoadState('domcontentloaded');
   });
   
