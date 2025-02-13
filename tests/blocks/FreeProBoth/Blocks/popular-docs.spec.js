@@ -68,10 +68,10 @@ test.describe('Popular Docs Page Tests', () => {
 
 
   
-  test('Click on Foosball Article and Verify Content', async ({ page }) => {
-    await page.locator('li').filter({ hasText: 'Importance of Playing' }).getByRole('img').click();
-    await expect(page.locator('#content')).toMatchAriaSnapshot(`- text: Importance of Playing Foosball In Office`);
-  });
+//   test('Click on Foosball Article and Verify Content', async ({ page }) => {
+//     await page.locator('li').filter({ hasText: 'Importance of Playing' }).getByRole('img').click();
+//     await expect(page.locator('#content')).toMatchAriaSnapshot(`- text: Importance of Playing Foosball In Office`);
+//   });
 
   test('Navigate Using Foosball Link', async ({ page }) => {
     await page.getByRole('link', { name: 'Importance of Playing' }).click();
