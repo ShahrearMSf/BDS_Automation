@@ -4,7 +4,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Block-Category=Box-Card', () => {
   // Load the page once before each test
   test.beforeEach(async ({ page }) => {
-    await page.goto('https://betterdocs.msf.qa378.site/category-box-card/');
+    await page.goto(`${process.env.BASE_URL_MSF}/category-box-card/`);
     });
 
     //fist three category to check the incidents

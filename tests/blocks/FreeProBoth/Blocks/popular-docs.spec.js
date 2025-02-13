@@ -1,9 +1,10 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Popular Docs Page Tests', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto('https://betterdocs.msf.qa378.site/popular-docs/');
-  });
+    test.beforeEach(async ({ page }) => {
+        await page.goto(`${process.env.BASE_URL_MSF}/popular-docs/`);
+      });
+      
 
   test('Verify Foosball Article Navigation', async ({ page }) => {
     await page.getByText('Importance of Playing Foosball In Office Does your platform include an').click();

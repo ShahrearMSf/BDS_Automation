@@ -5,9 +5,10 @@ test.describe('Category Grid L2 Page Tests', () => {
 
   test.beforeAll(async ({ browser }) => {
     page = await browser.newPage();
-    await page.goto('https://betterdocs.msf.qa378.site/category-grid-l2/');
+    await page.goto(`${process.env.BASE_URL_MSF}/category-grid-l2/`);
     await page.waitForLoadState('domcontentloaded');
   });
+  
 
   test.afterAll(async () => {
     await page.close();
@@ -61,24 +62,3 @@ test.describe('Category Grid L2 Page Tests', () => {
 
 
 
-
-
-
-
-
-
-
-// import { test, expect } from '@playwright/test';
-
-// test('test', async ({ page }) => {
-//   await page.goto('https://betterdocs.msf.qa378.site/category-grid-l2/');
-//   await page.locator('.betterdocs-category-grid-wrapper').first().click();
-//   await expect(page.locator('#content')).toMatchAriaSnapshot(`- text: "2"`);
-//   await page.getByRole('heading', { name: '৩য় পক্ষ' }).first().click();
-//   await page.locator('.betterdocs-body').first().click();
-//   await page.locator('.far').first().click();
-//   await page.getByRole('link', { name: 'How can your system surface' }).first().click();
-//   await page.locator('.docs-cat-link-btn').first().click();
-//   await page.goto('https://betterdocs.msf.qa378.site/category-grid-l2/');
-//   await page.locator('.betterdocs-footer').first().click();
-// });
