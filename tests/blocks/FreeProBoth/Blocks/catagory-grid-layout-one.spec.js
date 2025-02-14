@@ -16,6 +16,8 @@ test.describe('Category Grid Layout 1 Tests', () => {
     await expect(page).toHaveURL(/category-grid/);
   });
 
+//icon or image, heading etc
+
   test('Verify first category content', async () => {
     const firstArticle = page.locator('article').first();
     await expect(firstArticle.locator('img')).toBeVisible();
