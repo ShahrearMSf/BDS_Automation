@@ -20,7 +20,8 @@ export default defineConfig({
   reporter: "html",
 
   use: {
-    baseURL: process.env.BASE_URL,
+    // baseURL: process.env.BASE_URL,
+    baseURL: process.env.BASE_URL_MSF || process.env.BASE_URL,
     testIdAttribute: "data-id",
 
     screenshot: "on",
