@@ -30,6 +30,5 @@ test('test', async ({ page }) => {
   await page.locator('div:nth-child(3) > .betterdocs-single-related-category-inner > .betterdocs-category-header > .betterdocs-category-items-counts').click();
   await page.getByText('20').click();
   await page.getByText('All In All MSF 20').click();
-  await page.goto('https://betterdocs.msf.qa378.site/related-categories-b/');
   await page.getByRole('link', { name: 'All In All MSF' }).click();
 });
