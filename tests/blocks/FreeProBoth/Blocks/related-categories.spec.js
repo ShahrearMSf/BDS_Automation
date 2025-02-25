@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Related Categories Page Tests', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('https://betterdocs.msf.qa378.site/related-categories-b/');
+    await page.goto(`${process.env.BASE_URL_MSF}/related-categories-b/`);
   });
 
   test('Verify Page Heading', async ({ page }) => {
