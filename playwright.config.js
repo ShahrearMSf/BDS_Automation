@@ -1,6 +1,6 @@
 // @ts-check
-import { defineConfig, devices } from '@playwright/test';
-import { config } from 'dotenv';
+import { defineConfig, devices } from "@playwright/test";
+import { config } from "dotenv";
 
 config();
 
@@ -43,4 +43,3 @@ export default defineConfig({
     },
   ],
 });
-

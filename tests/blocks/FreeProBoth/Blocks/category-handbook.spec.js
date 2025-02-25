@@ -1,0 +1,160 @@
+import { test, expect } from "@playwright/test";
+
+test("test", async ({ page }) => {
+  await page.goto("https://betterdocs.msf.qa378.site/category-handbook/");
+  await expect(page.locator("h1")).toMatchAriaSnapshot(
+    `- heading "Category Handbook" [level=1]`
+  );
+  await page.getByText("Category Handbook ৩য় পক্ষ 2").click();
+  await expect(page.locator("body")).toMatchAriaSnapshot(`
+ 
+    - main:
+      - heading "Category Handbook" [level=1]
+      - article:
+        - img "betterdocs-category-image"
+        - heading "৩য় পক্ষ" [level=2]
+        - text: "2"
+        - list:
+          - listitem:
+            - link "How can your system surface points and benefits experiences to customers across multiple applications outside of the Loyalty Management/Salesforce ecosystem?":
+              - img
+          - listitem:
+            - link "Explain how the platform handles points associated for specific SKUs, multiple SKUs,":
+              - img
+        - link "Explore More":
+          - img
+      - article:
+        - img "betterdocs-category-image"
+        - heading "Alif" [level=2]
+        - text: "2"
+        - list:
+          - listitem:
+            - link "This is life":
+              - img
+          - listitem:
+            - link "Ghum Pasce":
+              - img
+        - link "Explore More":
+          - img
+      - article:
+        - heading "All In All MSF" [level=2]
+        - text: /\\d+/
+        - paragraph: Here you will find the docs containing related docs, attachments and time perfectly
+        - list:
+          - listitem:
+            - 'link "Mercedes GLS450: Here’s why every driveway of upscale Dhaka has one"':
+              - img
+          - listitem:
+            - link "Why our mobile data prices are higher than India, Pakistan":
+              - img
+          - listitem:
+            - link /Portaria PRES\\/INSS nº \\d+\\.\\d+, de \\d+ de outubro de \\d+/:
+              - img
+          - listitem:
+            - link "হ্যাঁ, Mercedes GLS450":
+              - img
+          - listitem:
+            - link "FDA approves injectable version of Bristol Myers Squibb’s cancer drug Opdivo":
+              - img
+        - link "Explore More":
+          - img
+      - article:
+        - heading "API & Development" [level=2]
+        - text: "2"
+        - list:
+          - listitem:
+            - link "Can you describe your API’s capabilities in terms of ensuring quick and accurate responses? Please provide details on the average response time and accuracy rate, as well as any measures in place to maintain these performance standards.":
+              - text: Can you describe your API’s capabilities in terms of ensuring quick and accurate responses? Please provide details on the average response time and accuracy rate, as well as any measures in place to maintain these performance standards.
+              - img
+          - listitem:
+            - link "How does the software handle awarding points for transactions that use a “buy now, pay later” service?":
+              - img
+        - link "Explore More":
+          - img
+      - article:
+        - img "betterdocs-category-image"
+        - heading "Architecture & Infastructure" [level=2]
+        - text: "4"
+        - list:
+          - listitem:
+            - link "Can scale for growth and program needs":
+              - img
+          - listitem:
+            - link "Does your solution provide an API that supports account creation and management capabilities? If so, please detail the functionalities available through the API for managing accounts.":
+              - img
+          - listitem:
+            - link "Can scale for growth and program needs":
+              - img
+          - listitem:
+            - link "Ability to scale and have separation of data, programs, rewards and point structures for different regions (US, EU, APAC and by country or state / province)":
+              - img
+        - link "Explore More":
+          - img
+      - article:
+        - img "betterdocs-category-image"
+        - heading "Architektur Infrastruktur" [level=2]
+        - text: "3"
+        - list:
+          - listitem:
+            - 'link "Protected: Does your solution provide an API that supports account creation and management capabilities? If so, please detail the functionalities available through the API for managing accounts."':
+              - img
+          - listitem:
+            - link "Does your solution provide support for the issuance and management of badges or badging systems?":
+              - img
+          - listitem:
+            - 'link "Protected: Can scale for growth and program needs"':
+              - img
+        - link "Explore More":
+          - img
+      - article:
+        - img "betterdocs-category-image"
+        - heading "Ba" [level=2]
+        - text: "2"
+        - list:
+          - listitem:
+            - link "Explain how your system integrates with and/or generates digital barcodes, QR codes, and dynamic codes for offers.":
+              - img
+          - listitem:
+            - link "Obayed Mamur – The Story of a Handsome Man":
+              - img
+        - link "Explore More":
+          - img
+      - article:
+        - img "betterdocs-category-image"
+        - heading "Benefit, Reward, Voucher & Promotion Management" [level=2]
+        - text: /\\d+/
+        - list:
+          - listitem:
+            - link "Does your loyalty platform integrate with online, in-app, and all in-store POS systems to award points for transactions involving products and services?":
+              - img
+          - listitem:
+            - link "Does your platform include an automatic promotion deployment tool that is triggered by customer actions or life cycle milestones? If so, please describe how this tool functions and the types of triggers that can be used.":
+              - text: Does your platform include an automatic promotion deployment tool that is triggered by customer actions or life cycle milestones? If so, please describe how this tool functions and the types of triggers that can be used.
+              - img
+          - listitem:
+            - 'link "Is your system capable of rewarding members based on specific events such as birthdays, anniversaries, or other dates specified by ##BRAND##?"':
+              - img
+          - listitem:
+            - link "Does your platform support the purchase, gifting, or transferring of points between members? Please provide details on how these processes are managed.":
+              - img
+          - listitem:
+            - link "Can your platform handle offer issuance and manage the issuance process? Please explain the workflow and management tools available.":
+              - img
+        - link "Explore More":
+          - img
+      - article:
+        - heading "C" [level=2]
+        - text: "2"
+        - paragraph: C has two docs A and B
+        - list:
+          - listitem:
+            - link "Azan diye dilo":
+              - img
+          - listitem:
+            - link "Jackfruit":
+              - img
+        - link "Explore More":
+          - img
+  
+    `);
+});
