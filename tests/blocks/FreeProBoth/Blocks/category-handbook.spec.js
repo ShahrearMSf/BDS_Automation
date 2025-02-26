@@ -1,12 +1,27 @@
 import { test, expect } from "@playwright/test";
 
-test("validate article 1", async ({ page }) => {
-  // Navigate to the target page
-  await page.goto("https://betterdocs.msf.qa378.site/category-handbook/");
+// We'll use a page variable declared at the file scope
+let page;
+
+test.beforeAll(async ({ browser }) => {
+  page = await browser.newPage();
+  await page.goto(`${process.env.BASE_URL}/category-handbook/`);
+  await page.waitForLoadState("domcontentloaded");
+});
+
+test("validate category handbook Heading", async ({ page }) => {
+  // Navigate to the target page using BASE_URL
+  await page.goto(`${process.env.BASE_URL}/category-handbook/`);
+
   // Verify the main heading is visible
   const mainHeading = page.locator(".entry-title");
   await expect(mainHeading).toBeVisible();
   await expect(mainHeading).toHaveText("Category Handbook");
+});
+
+test("validate article 1", async ({ page }) => {
+  // Navigate to the target page using BASE_URL
+  await page.goto(`${process.env.BASE_URL}/category-handbook/`);
 
   // Locate the first article
   const articleSection = page.locator('article[data-id="144"]').nth(0);
@@ -40,7 +55,7 @@ test("validate article 1", async ({ page }) => {
   await expect(exploreMoreLink).toBeVisible();
   await expect(exploreMoreLink).toHaveAttribute(
     "href",
-    "https://betterdocs.msf.qa378.site/docs/non-knowledgebase/third-party-bn/"
+    `${process.env.BASE_URL}/docs/non-knowledgebase/third-party-bn/`
   );
   await expect(exploreMoreLink).toContainText("Explore More");
 
@@ -60,12 +75,8 @@ test("validate article 1", async ({ page }) => {
 });
 
 test("validate article 2", async ({ page }) => {
-  // Navigate to the target page
-  await page.goto("https://betterdocs.msf.qa378.site/category-handbook/");
-  // Verify the main heading is visible
-  const mainHeading = page.locator(".entry-title");
-  await expect(mainHeading).toBeVisible();
-  await expect(mainHeading).toHaveText("Category Handbook");
+  // Navigate to the target page using BASE_URL
+  await page.goto(`${process.env.BASE_URL}/category-handbook/`);
 
   // Locate the second article
   const articleSection = page.locator('article[data-id="144"]').nth(1);
@@ -95,7 +106,7 @@ test("validate article 2", async ({ page }) => {
   await expect(exploreMoreLink).toBeVisible();
   await expect(exploreMoreLink).toHaveAttribute(
     "href",
-    "https://betterdocs.msf.qa378.site/docs/non-knowledgebase/alif/"
+    `${process.env.BASE_URL}/docs/non-knowledgebase/alif/`
   );
   await expect(exploreMoreLink).toContainText("Explore More");
 
@@ -115,12 +126,8 @@ test("validate article 2", async ({ page }) => {
 });
 
 test("validate article 3", async ({ page }) => {
-  // Navigate to the target page
-  await page.goto("https://betterdocs.msf.qa378.site/category-handbook/");
-  // Verify the main heading is visible
-  const mainHeading = page.locator(".entry-title");
-  await expect(mainHeading).toBeVisible();
-  await expect(mainHeading).toHaveText("Category Handbook");
+  // Navigate to the target page using BASE_URL
+  await page.goto(`${process.env.BASE_URL}/category-handbook/`);
 
   // Locate the third article
   const articleSection = page.locator('article[data-id="144"]').nth(2);
@@ -166,7 +173,7 @@ test("validate article 3", async ({ page }) => {
   await expect(exploreMoreLink).toBeVisible();
   await expect(exploreMoreLink).toHaveAttribute(
     "href",
-    "https://betterdocs.msf.qa378.site/docs/bcb/allinallmsf/"
+    `${process.env.BASE_URL}/docs/bcb/allinallmsf/`
   );
   await expect(exploreMoreLink).toContainText("Explore More");
 
@@ -186,44 +193,49 @@ test("validate article 3", async ({ page }) => {
 });
 
 test("validate article 4", async ({ page }) => {
-  // Navigate to the target page
-  await page.goto("https://betterdocs.msf.qa378.site/category-handbook/");
-  // Verify the main heading is visible
-  const mainHeading = page.locator(".entry-title");
-  await expect(mainHeading).toBeVisible();
-  await expect(mainHeading).toHaveText("Category Handbook");
+  // Navigate to the target page using BASE_URL
+  await page.goto(`${process.env.BASE_URL}/category-handbook/`);
+
   // Locate the fourth article
   const articleSection = page.locator('article[data-id="144"]').nth(3);
+
   // Validate the heading visibility
   await page.getByText("API & Development");
+
   // Locate the count wrapper
   const countWrapper = articleSection.locator("span").filter({ hasText: "2" });
   await expect(countWrapper).toBeVisible();
   await expect(countWrapper).toHaveText("2");
+
   // Validate the list items
   const listItems = articleSection.locator("ul.betterdocs-articles-list li");
   await expect(listItems).toHaveCount(2); // Ensure there are exactly 2 list items
+
   // Validate the first list item
   const firstListItem = listItems.nth(0);
   await expect(firstListItem).toContainText(
     "Can you describe your API’s capabilities in terms of ensuring quick and accurate responses? Please provide details on the average response time and accuracy rate, as well as any measures in place to maintain these performance standards."
   );
+
   // Validate the second list item
   const secondListItem = listItems.nth(1);
   await expect(secondListItem).toContainText(
     "How does the software handle awarding points for transactions that use a “buy now, pay later” service?"
   );
+
   // Validate the "Explore More" link
   const exploreMoreLink = articleSection.locator("a.docs-cat-link-btn");
   await expect(exploreMoreLink).toBeVisible();
   await expect(exploreMoreLink).toHaveAttribute(
     "href",
-    "https://betterdocs.msf.qa378.site/docs/bcb/api-development/"
+    `${process.env.BASE_URL}/docs/bcb/api-development/`
   );
   await expect(exploreMoreLink).toContainText("Explore More");
+
   // Validate the image
   const image = articleSection.locator("img");
   await expect(image).toBeVisible();
+
   // Check if the image src contains 'full-default.png'
   const imageSrc = await image.getAttribute("src");
   if (imageSrc.includes("full-default.png")) {
@@ -234,55 +246,63 @@ test("validate article 4", async ({ page }) => {
     console.log("Image is properly set.");
   }
 });
+
 test("validate article 5", async ({ page }) => {
-  // Navigate to the target page
-  await page.goto("https://betterdocs.msf.qa378.site/category-handbook/");
-  // Verify the main heading is visible
-  const mainHeading = page.locator(".entry-title");
-  await expect(mainHeading).toBeVisible();
-  await expect(mainHeading).toHaveText("Category Handbook");
+  // Navigate to the target page using BASE_URL
+  await page.goto(`${process.env.BASE_URL}/category-handbook/`);
+
   // Locate the fifth article
   const articleSection = page.locator('article[data-id="144"]').nth(4);
+
   // Validate the heading visibility
   await page.getByText("Architecture & Infrastructure");
+
   // Locate the count wrapper
   const countWrapper = articleSection.locator("span").filter({ hasText: "4" });
   await expect(countWrapper).toBeVisible();
   await expect(countWrapper).toHaveText("4");
+
   // Validate the list items
   const listItems = articleSection.locator("ul.betterdocs-articles-list li");
   await expect(listItems).toHaveCount(4); // Ensure there are exactly 4 list items
+
   // Validate the first list item
   const firstListItem = listItems.nth(0);
   await expect(firstListItem).toContainText(
     "Can scale for growth and program needs"
   );
+
   // Validate the second list item
   const secondListItem = listItems.nth(1);
   await expect(secondListItem).toContainText(
     "Does your solution provide an API that supports account creation and management capabilities? If so, please detail the functionalities available through the API for managing accounts."
   );
+
   // Validate the third list item
   const thirdListItem = listItems.nth(2);
   await expect(thirdListItem).toContainText(
     "Can scale for growth and program needs"
   );
+
   // Validate the fourth list item
   const fourthListItem = listItems.nth(3);
   await expect(fourthListItem).toContainText(
     "Ability to scale and have separation of data, programs, rewards and point structures for different regions (US, EU, APAC and by country or state / province)"
   );
+
   // Validate the "Explore More" link
   const exploreMoreLink = articleSection.locator("a.docs-cat-link-btn");
   await expect(exploreMoreLink).toBeVisible();
   await expect(exploreMoreLink).toHaveAttribute(
     "href",
-    "https://betterdocs.msf.qa378.site/docs/non-knowledgebase/architecture-infastructure/"
+    `${process.env.BASE_URL}/docs/non-knowledgebase/architecture-infastructure/`
   );
   await expect(exploreMoreLink).toContainText("Explore More");
+
   // Validate the image
   const image = articleSection.locator("img");
   await expect(image).toBeVisible();
+
   // Check if the image src contains 'full-default.png'
   const imageSrc = await image.getAttribute("src");
   if (imageSrc.includes("full-default.png")) {
@@ -295,49 +315,55 @@ test("validate article 5", async ({ page }) => {
 });
 
 test("validate article 6", async ({ page }) => {
-  // Navigate to the target page
-  await page.goto("https://betterdocs.msf.qa378.site/category-handbook/");
-  // Verify the main heading is visible
-  const mainHeading = page.locator(".entry-title");
-  await expect(mainHeading).toBeVisible();
-  await expect(mainHeading).toHaveText("Category Handbook");
+  // Navigate to the target page using BASE_URL
+  await page.goto(`${process.env.BASE_URL}/category-handbook/`);
+
   // Locate the sixth article
   const articleSection = page.locator('article[data-id="144"]').nth(5);
+
   // Validate the heading visibility
   await page.getByText("Architektur Infrastruktur");
+
   // Locate the count wrapper
   const countWrapper = articleSection.locator("span").filter({ hasText: "3" });
   await expect(countWrapper).toBeVisible();
   await expect(countWrapper).toHaveText("3");
+
   // Validate the list items
   const listItems = articleSection.locator("ul.betterdocs-articles-list li");
   await expect(listItems).toHaveCount(3); // Ensure there are exactly 3 list items
+
   // Validate the first list item
   const firstListItem = listItems.nth(0);
   await expect(firstListItem).toContainText(
     "Protected: Does your solution provide an API that supports account creation and management capabilities? If so, please detail the functionalities available through the API for managing accounts."
   );
+
   // Validate the second list item
   const secondListItem = listItems.nth(1);
   await expect(secondListItem).toContainText(
     "Does your solution provide support for the issuance and management of badges or badging systems?"
   );
+
   // Validate the third list item
   const thirdListItem = listItems.nth(2);
   await expect(thirdListItem).toContainText(
     "Protected: Can scale for growth and program needs"
   );
+
   // Validate the "Explore More" link
   const exploreMoreLink = articleSection.locator("a.docs-cat-link-btn");
   await expect(exploreMoreLink).toBeVisible();
   await expect(exploreMoreLink).toHaveAttribute(
     "href",
-    "https://betterdocs.msf.qa378.site/docs/non-knowledgebase/architektur-infrastruktur/"
+    `${process.env.BASE_URL}/docs/non-knowledgebase/architektur-infrastruktur/`
   );
   await expect(exploreMoreLink).toContainText("Explore More");
+
   // Validate the image
   const image = articleSection.locator("img");
   await expect(image).toBeVisible();
+
   // Check if the image src contains 'full-default.png'
   const imageSrc = await image.getAttribute("src");
   if (imageSrc.includes("full-default.png")) {
@@ -348,45 +374,51 @@ test("validate article 6", async ({ page }) => {
     console.log("Image is properly set.");
   }
 });
+
 test("validate article 7", async ({ page }) => {
-  // Navigate to the target page
-  await page.goto("https://betterdocs.msf.qa378.site/category-handbook/");
-  // Verify the main heading is visible
-  const mainHeading = page.locator(".entry-title");
-  await expect(mainHeading).toBeVisible();
-  await expect(mainHeading).toHaveText("Category Handbook");
+  // Navigate to the target page using BASE_URL
+  await page.goto(`${process.env.BASE_URL}/category-handbook/`);
+
   // Locate the seventh article
   const articleSection = page.locator('article[data-id="144"]').nth(6);
+
   // Validate the heading visibility
   await page.getByText("Ba");
+
   // Locate the count wrapper
   const countWrapper = articleSection.locator("span").filter({ hasText: "2" });
   await expect(countWrapper).toBeVisible();
   await expect(countWrapper).toHaveText("2");
+
   // Validate the list items
   const listItems = articleSection.locator("ul.betterdocs-articles-list li");
   await expect(listItems).toHaveCount(2); // Ensure there are exactly 2 list items
+
   // Validate the first list item
   const firstListItem = listItems.nth(0);
   await expect(firstListItem).toContainText(
     "Explain how your system integrates with and/or generates digital barcodes, QR codes, and dynamic codes for offers."
   );
+
   // Validate the second list item
   const secondListItem = listItems.nth(1);
   await expect(secondListItem).toContainText(
     "Obayed Mamur – The Story of a Handsome Man"
   );
+
   // Validate the "Explore More" link
   const exploreMoreLink = articleSection.locator("a.docs-cat-link-btn");
   await expect(exploreMoreLink).toBeVisible();
   await expect(exploreMoreLink).toHaveAttribute(
     "href",
-    "https://betterdocs.msf.qa378.site/docs/non-knowledgebase/ba/"
+    `${process.env.BASE_URL}/docs/non-knowledgebase/ba/`
   );
   await expect(exploreMoreLink).toContainText("Explore More");
+
   // Validate the image
   const image = articleSection.locator("img");
   await expect(image).toBeVisible();
+
   // Check if the image src contains 'full-default.png'
   const imageSrc = await image.getAttribute("src");
   if (imageSrc.includes("full-default.png")) {
@@ -397,14 +429,10 @@ test("validate article 7", async ({ page }) => {
     console.log("Image is properly set.");
   }
 });
-test("validate article 8", async ({ page }) => {
-  // Navigate to the target page
-  await page.goto("https://betterdocs.msf.qa378.site/category-handbook/");
 
-  // Verify the main heading is visible
-  const mainHeading = page.locator(".entry-title");
-  await expect(mainHeading).toBeVisible();
-  await expect(mainHeading).toHaveText("Category Handbook");
+test("validate article 8", async ({ page }) => {
+  // Navigate to the target page using BASE_URL
+  await page.goto(`${process.env.BASE_URL}/category-handbook/`);
 
   // Locate the eighth article
   const articleSection = page.locator('article[data-id="144"]').nth(7);
@@ -451,7 +479,7 @@ test("validate article 8", async ({ page }) => {
   await expect(exploreMoreLink).toBeVisible();
   await expect(exploreMoreLink).toHaveAttribute(
     "href",
-    "https://betterdocs.msf.qa378.site/docs/loyalty-management/benefit-reward-voucher-promotion-management/"
+    `${process.env.BASE_URL}/docs/loyalty-management/benefit-reward-voucher-promotion-management/`
   );
   await expect(exploreMoreLink).toContainText("Explore More");
 
@@ -469,45 +497,52 @@ test("validate article 8", async ({ page }) => {
     console.log("Image is properly set.");
   }
 });
+
 test("validate article 9", async ({ page }) => {
-  // Navigate to the target page
-  await page.goto("https://betterdocs.msf.qa378.site/category-handbook/");
-  // Verify the main heading is visible
-  const mainHeading = page.locator(".entry-title");
-  await expect(mainHeading).toBeVisible();
-  await expect(mainHeading).toHaveText("Category Handbook");
+  // Navigate to the target page using BASE_URL
+  await page.goto(`${process.env.BASE_URL}/category-handbook/`);
+
   // Locate the ninth article
   const articleSection = page.locator('article[data-id="144"]').nth(8);
+
   // Validate the heading visibility
   await page.getByText("C");
+
   // Locate the count wrapper
   const countWrapper = articleSection.locator("span").filter({ hasText: "2" });
   await expect(countWrapper).toBeVisible();
   await expect(countWrapper).toHaveText("2");
+
   // Validate the paragraph
   const paragraph = articleSection.locator("p");
   await expect(paragraph).toBeVisible();
   await expect(paragraph).toHaveText("C has two docs A and B");
+
   // Validate the list items
   const listItems = articleSection.locator("ul.betterdocs-articles-list li");
   await expect(listItems).toHaveCount(2); // Ensure there are exactly 2 list items
+
   // Validate the first list item
   const firstListItem = listItems.nth(0);
   await expect(firstListItem).toContainText("Azan diye dilo");
+
   // Validate the second list item
   const secondListItem = listItems.nth(1);
   await expect(secondListItem).toContainText("Jackfruit");
+
   // Validate the "Explore More" link
   const exploreMoreLink = articleSection.locator("a.docs-cat-link-btn");
   await expect(exploreMoreLink).toBeVisible();
   await expect(exploreMoreLink).toHaveAttribute(
     "href",
-    "https://betterdocs.msf.qa378.site/docs/a/c/"
+    `${process.env.BASE_URL}/docs/a/c/`
   );
   await expect(exploreMoreLink).toContainText("Explore More");
+
   // Validate the image
   const image = articleSection.locator("img");
   await expect(image).toBeVisible();
+
   // Check if the image src contains 'full-default.png'
   const imageSrc = await image.getAttribute("src");
   if (imageSrc.includes("full-default.png")) {
