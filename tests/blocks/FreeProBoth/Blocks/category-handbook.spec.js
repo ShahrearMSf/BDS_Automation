@@ -1,28 +1,18 @@
 import { test, expect } from "@playwright/test";
 
-// We'll use a page variable declared at the file scope
-let page;
-
-test.beforeAll(async ({ browser }) => {
-  page = await browser.newPage();
-  await page.goto(`${process.env.BASE_URL}/category-handbook/`);
+test.beforeEach(async ({ page }) => {
+  // Navigate to the target page before each test
+  await page.goto(`${process.env.BASE_URL_MSF}/category-handbook/`);
   await page.waitForLoadState("domcontentloaded");
 });
 
 test("validate category handbook Heading", async ({ page }) => {
-  // Navigate to the target page using BASE_URL
-  await page.goto(`${process.env.BASE_URL}/category-handbook/`);
-
-  // Verify the main heading is visible
   const mainHeading = page.locator(".entry-title");
   await expect(mainHeading).toBeVisible();
   await expect(mainHeading).toHaveText("Category Handbook");
 });
 
 test("validate article 1", async ({ page }) => {
-  // Navigate to the target page using BASE_URL
-  await page.goto(`${process.env.BASE_URL}/category-handbook/`);
-
   // Locate the first article
   const articleSection = page.locator('article[data-id="144"]').nth(0);
 
@@ -55,7 +45,7 @@ test("validate article 1", async ({ page }) => {
   await expect(exploreMoreLink).toBeVisible();
   await expect(exploreMoreLink).toHaveAttribute(
     "href",
-    `${process.env.BASE_URL}/docs/non-knowledgebase/third-party-bn/`
+    `${process.env.BASE_URL_MSF}/docs/non-knowledgebase/third-party-bn/`
   );
   await expect(exploreMoreLink).toContainText("Explore More");
 
@@ -75,9 +65,6 @@ test("validate article 1", async ({ page }) => {
 });
 
 test("validate article 2", async ({ page }) => {
-  // Navigate to the target page using BASE_URL
-  await page.goto(`${process.env.BASE_URL}/category-handbook/`);
-
   // Locate the second article
   const articleSection = page.locator('article[data-id="144"]').nth(1);
 
@@ -106,7 +93,7 @@ test("validate article 2", async ({ page }) => {
   await expect(exploreMoreLink).toBeVisible();
   await expect(exploreMoreLink).toHaveAttribute(
     "href",
-    `${process.env.BASE_URL}/docs/non-knowledgebase/alif/`
+    `${process.env.BASE_URL_MSF}/docs/non-knowledgebase/alif/`
   );
   await expect(exploreMoreLink).toContainText("Explore More");
 
@@ -126,9 +113,6 @@ test("validate article 2", async ({ page }) => {
 });
 
 test("validate article 3", async ({ page }) => {
-  // Navigate to the target page using BASE_URL
-  await page.goto(`${process.env.BASE_URL}/category-handbook/`);
-
   // Locate the third article
   const articleSection = page.locator('article[data-id="144"]').nth(2);
 
@@ -173,7 +157,7 @@ test("validate article 3", async ({ page }) => {
   await expect(exploreMoreLink).toBeVisible();
   await expect(exploreMoreLink).toHaveAttribute(
     "href",
-    `${process.env.BASE_URL}/docs/bcb/allinallmsf/`
+    `${process.env.BASE_URL_MSF}/docs/bcb/allinallmsf/`
   );
   await expect(exploreMoreLink).toContainText("Explore More");
 
@@ -193,9 +177,6 @@ test("validate article 3", async ({ page }) => {
 });
 
 test("validate article 4", async ({ page }) => {
-  // Navigate to the target page using BASE_URL
-  await page.goto(`${process.env.BASE_URL}/category-handbook/`);
-
   // Locate the fourth article
   const articleSection = page.locator('article[data-id="144"]').nth(3);
 
@@ -228,7 +209,7 @@ test("validate article 4", async ({ page }) => {
   await expect(exploreMoreLink).toBeVisible();
   await expect(exploreMoreLink).toHaveAttribute(
     "href",
-    `${process.env.BASE_URL}/docs/bcb/api-development/`
+    `${process.env.BASE_URL_MSF}/docs/bcb/api-development/`
   );
   await expect(exploreMoreLink).toContainText("Explore More");
 
@@ -248,9 +229,6 @@ test("validate article 4", async ({ page }) => {
 });
 
 test("validate article 5", async ({ page }) => {
-  // Navigate to the target page using BASE_URL
-  await page.goto(`${process.env.BASE_URL}/category-handbook/`);
-
   // Locate the fifth article
   const articleSection = page.locator('article[data-id="144"]').nth(4);
 
@@ -295,7 +273,7 @@ test("validate article 5", async ({ page }) => {
   await expect(exploreMoreLink).toBeVisible();
   await expect(exploreMoreLink).toHaveAttribute(
     "href",
-    `${process.env.BASE_URL}/docs/non-knowledgebase/architecture-infastructure/`
+    `${process.env.BASE_URL_MSF}/docs/non-knowledgebase/architecture-infastructure/`
   );
   await expect(exploreMoreLink).toContainText("Explore More");
 
@@ -315,9 +293,6 @@ test("validate article 5", async ({ page }) => {
 });
 
 test("validate article 6", async ({ page }) => {
-  // Navigate to the target page using BASE_URL
-  await page.goto(`${process.env.BASE_URL}/category-handbook/`);
-
   // Locate the sixth article
   const articleSection = page.locator('article[data-id="144"]').nth(5);
 
@@ -356,7 +331,7 @@ test("validate article 6", async ({ page }) => {
   await expect(exploreMoreLink).toBeVisible();
   await expect(exploreMoreLink).toHaveAttribute(
     "href",
-    `${process.env.BASE_URL}/docs/non-knowledgebase/architektur-infrastruktur/`
+    `${process.env.BASE_URL_MSF}/docs/non-knowledgebase/architektur-infrastruktur/`
   );
   await expect(exploreMoreLink).toContainText("Explore More");
 
@@ -376,9 +351,6 @@ test("validate article 6", async ({ page }) => {
 });
 
 test("validate article 7", async ({ page }) => {
-  // Navigate to the target page using BASE_URL
-  await page.goto(`${process.env.BASE_URL}/category-handbook/`);
-
   // Locate the seventh article
   const articleSection = page.locator('article[data-id="144"]').nth(6);
 
@@ -411,7 +383,7 @@ test("validate article 7", async ({ page }) => {
   await expect(exploreMoreLink).toBeVisible();
   await expect(exploreMoreLink).toHaveAttribute(
     "href",
-    `${process.env.BASE_URL}/docs/non-knowledgebase/ba/`
+    `${process.env.BASE_URL_MSF}/docs/non-knowledgebase/ba/`
   );
   await expect(exploreMoreLink).toContainText("Explore More");
 
@@ -431,9 +403,6 @@ test("validate article 7", async ({ page }) => {
 });
 
 test("validate article 8", async ({ page }) => {
-  // Navigate to the target page using BASE_URL
-  await page.goto(`${process.env.BASE_URL}/category-handbook/`);
-
   // Locate the eighth article
   const articleSection = page.locator('article[data-id="144"]').nth(7);
 
@@ -479,7 +448,7 @@ test("validate article 8", async ({ page }) => {
   await expect(exploreMoreLink).toBeVisible();
   await expect(exploreMoreLink).toHaveAttribute(
     "href",
-    `${process.env.BASE_URL}/docs/loyalty-management/benefit-reward-voucher-promotion-management/`
+    `${process.env.BASE_URL_MSF}/docs/loyalty-management/benefit-reward-voucher-promotion-management/`
   );
   await expect(exploreMoreLink).toContainText("Explore More");
 
@@ -499,9 +468,6 @@ test("validate article 8", async ({ page }) => {
 });
 
 test("validate article 9", async ({ page }) => {
-  // Navigate to the target page using BASE_URL
-  await page.goto(`${process.env.BASE_URL}/category-handbook/`);
-
   // Locate the ninth article
   const articleSection = page.locator('article[data-id="144"]').nth(8);
 
@@ -535,7 +501,7 @@ test("validate article 9", async ({ page }) => {
   await expect(exploreMoreLink).toBeVisible();
   await expect(exploreMoreLink).toHaveAttribute(
     "href",
-    `${process.env.BASE_URL}/docs/a/c/`
+    `${process.env.BASE_URL_MSF}/docs/a/c/`
   );
   await expect(exploreMoreLink).toContainText("Explore More");
 
