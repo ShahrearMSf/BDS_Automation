@@ -1,48 +1,94 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Archive List Page Tests', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto(`${process.env.BASE_URL_MSF}/archive-list/`);
+  let page;
+
+  test.beforeEach(async ({ browser }) => {
+    page = await browser.newPage();
+    const baseUrl = process.env.BASE_URL_MSF || 'https://betterdocs.msf.qa378.site';  // Fallback if the env variable isn't set
+    await page.goto(`${baseUrl}/archive-doc-list-l3/`);
   });
 
-  test('Click on "Archive Doc List L1 Updated"', async ({ page }) => {
-    await page.getByText('Archive Doc List L1 Updated').click();
+  test('should verify the heading on the page', async () => {
+    const heading = page.locator('h1');
+    await expect(heading).toMatchAriaSnapshot(`- heading "Archive Doc List L3" [level=1]`);
   });
 
-  test('Open "1% import duty threatens" Article', async ({ page }) => {
-    await page.getByRole('link', { name: '1% import duty threatens' }).click();
+  test('should click on Archive Doc List item and check title', async () => {
+    const archiveDocLink = page.getByText('Archive Doc List L3 1% import');
+    await archiveDocLink.click();
   });
 
-  test('Click on Pagination Controls', async ({ page }) => {
-    await page.getByText('2 3 … 32 ❯').click();
+  test('should click on the article and check the heading', async () => {
+    const articleLink = page.getByText('% import duty threatens foreign investment in economic zones: Stakeholders Last');
+    await articleLink.click();
+    const heading = page.getByRole('heading', { name: '1% import duty threatens' });
+    await heading.getByRole('img').click();
   });
 
-  test('Navigate to Page 1', async ({ page }) => {
-    await page.getByRole('link', { name: '1', exact: true }).click();
+  test('should interact with heading span and link 1', async () => {
+    const heading = page.getByRole('heading', { name: '1% import duty threatens' });
+    await heading.locator('span').click();
+    await heading.click();
+  });
+  
+  test('should click on last updated date', async () => {
+    const lastUpdatedLocator = page.locator('text=Last Updated:');
+    const lastUpdatedText = await lastUpdatedLocator.first().textContent();
+
+    // Ensure the "Last Updated" text follows the expected format
+    await expect.soft(lastUpdatedText).toMatch(/Last Updated: \s*\w+ \d{1,2}, \d{4}/);
+
+    // Now perform the click action on the "Last Updated" element
+    await page.getByText('Last Updated: September 9,').first().click();
   });
 
-  test('Navigate to Page 2', async ({ page }) => {
+  test('should interact with business leaders text', async () => {
+    const businessLeadersText = page.getByText('Business leaders and');
+    await businessLeadersText.click();
+  });
+
+  test('should navigate between pages', async () => {
+    const paginator = page.locator('div').filter({ hasText: '2 3 … 32 ❯' }).nth(2);
+    await paginator.click();
+    await page.getByRole('link', { name: '❮' }).click();
+    await page.getByRole('link', { name: '❮' }).click();
     await page.getByRole('link', { name: '2', exact: true }).click();
-  });
-
-  test('Click on Ellipsis (...) in Pagination', async ({ page }) => {
-    await page.getByText('…').click();
-  });
-
-  test('Navigate to Last Page (32)', async ({ page }) => {
-    await page.getByRole('link', { name: '32' }).click();
-  });
-
-  test('Navigate to Page 30', async ({ page }) => {
+    await page.getByRole('link', { name: '❯' }).click();
     await page.getByRole('link', { name: '32' }).click();
     await page.getByRole('link', { name: '30' }).click();
   });
 
-  test('Return to Page 1', async ({ page }) => {
-    await page.getByRole('link', { name: '1', exact: true }).click();
+  test.afterEach(async () => {
+    await page.close();
   });
 });
 
 
 
+
+
+
+
+// import { test, expect } from '@playwright/test';
+
+// test('test', async ({ page }) => {
+//   await page.goto('check base file on your own/');
+//   await expect(page.locator('h1')).toMatchAriaSnapshot(`- heading "Archive Doc List L3" [level=1]`);
+//   await page.getByText('Archive Doc List L3 1% import').click();
+//   await page.getByText('% import duty threatens foreign investment in economic zones: Stakeholders Last').click();
+//   await page.getByRole('heading', { name: '1% import duty threatens' }).getByRole('img').click();
+//   await page.getByRole('heading', { name: '1% import duty threatens' }).locator('span').click();
+//   await page.getByRole('heading', { name: '1% import duty threatens' }).click();
+//   await page.getByRole('link', { name: '1% import duty threatens' }).click();
+//   await page.getByText('Last Updated: September 9, 2024').first().click();
+//   await page.getByText('Business leaders and').click();
+//   await page.locator('div').filter({ hasText: '2 3 … 32 ❯' }).nth(2).click();
+//   await page.getByRole('link', { name: '❮' }).click();
+//   await page.getByRole('link', { name: '❮' }).click();
+//   await page.getByRole('link', { name: '2', exact: true }).click();
+//   await page.getByRole('link', { name: '❯' }).click();
+//   await page.getByRole('link', { name: '32' }).click();
+//   await page.getByRole('link', { name: '30' }).click();
+// });
 
