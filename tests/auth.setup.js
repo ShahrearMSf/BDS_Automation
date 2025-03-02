@@ -2,7 +2,7 @@
 
 import { test as setup, expect } from "@playwright/test";
 
-const loginUrl = `${process.env.BASE_URL}/wp-login.php`;
+const loginUrl = `${process.env.BASE_URL_MSF}/wp-login.php`;
 
 const adminFile = "playwright/.auth/admin.json";
 const editorFile = "playwright/.auth/editor.json";
