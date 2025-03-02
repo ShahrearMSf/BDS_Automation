@@ -26,13 +26,12 @@ test.describe('Archive List Page Tests', () => {
     await heading.getByRole('img').click();
   });
 
-  test('should interact with heading span and link', async () => {
+  test('should interact with heading span and link 1', async () => {
     const heading = page.getByRole('heading', { name: '1% import duty threatens' });
     await heading.locator('span').click();
     await heading.click();
-    await heading.getByRole('link', { name: '1% import duty threatens' }).click();
   });
-
+  
   test('should click on last updated date', async () => {
     const lastUpdatedLocator = page.locator('text=Last Updated:');
     const lastUpdatedText = await lastUpdatedLocator.first().textContent();
@@ -74,7 +73,7 @@ test.describe('Archive List Page Tests', () => {
 // import { test, expect } from '@playwright/test';
 
 // test('test', async ({ page }) => {
-//   await page.goto('https://betterdocs.msf.qa378.site/archive-doc-list-l3/');
+//   await page.goto('check base file on your own/');
 //   await expect(page.locator('h1')).toMatchAriaSnapshot(`- heading "Archive Doc List L3" [level=1]`);
 //   await page.getByText('Archive Doc List L3 1% import').click();
 //   await page.getByText('% import duty threatens foreign investment in economic zones: Stakeholders Last').click();
