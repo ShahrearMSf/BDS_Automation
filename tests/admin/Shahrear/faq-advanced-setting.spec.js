@@ -79,7 +79,6 @@ test.describe("BetterDocs FAQ Permission Setup @betterdocs", () => {
     await contributorPage.getByRole('link', { name: 'BetterDocs' }).hover();
     await contributorPage.waitForTimeout(500); 
     await contributorPage.getByRole("link", { name: "FAQ Builder" }).click();
-    await page.waitForTimeout(500); // Ensure the page load
 
     console.log("✅ Contributor can access FAQ Builder.");
 
