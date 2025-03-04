@@ -20,7 +20,7 @@ setup("authenticate as admin", async ({ page }) => {
   await page.getByRole("button", { name: "Log In" }).click();
 
   // await page.waitForURL(`${process.env.BASE_URL}/wp-admin/`);
-  // await expect(page.getByRole("heading", { name: "Dashboard" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Dashboard" })).toBeVisible();
 
   await page.context().storageState({ path: adminFile });
 });
