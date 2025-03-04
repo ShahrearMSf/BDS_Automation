@@ -1,3 +1,5 @@
+//https://d.pr/i/ql4UIT screenshot of successfully passing all 8 tests
+
 import { test, expect } from "@playwright/test";
 
 // Ensure to load environment variables before running tests
