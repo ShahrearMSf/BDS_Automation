@@ -8,7 +8,7 @@ test("Create multiple docs in BetterDocs with predefined titles", async ({
   page,
 }) => {
   await page.goto(
-    "https://betterdocs.arafatbytes.live/wp-admin/post-new.php?post_type=docs"
+    `${process.env.BASE_URL_ARAFAT}/wp-admin/post-new.php?post_type=docs`
   );
   console.log("Navigated directly to the 'Add New Doc' page");
 
@@ -50,7 +50,7 @@ test("Create multiple docs in BetterDocs with predefined titles", async ({
       for (let retry = 0; retry < 3; retry++) {
         try {
           await page.goto(
-            "https://betterdocs.arafatbytes.live/wp-admin/post-new.php?post_type=docs"
+            `${process.env.BASE_URL_ARAFAT}/wp-admin/post-new.php?post_type=docs`
           );
           await page.waitForLoadState("domcontentloaded");
           console.log(

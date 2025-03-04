@@ -1,7 +1,7 @@
 const { test, expect } = require("@playwright/test");
 require("dotenv").config();
 
-const loginUrl = `${process.env.BASE_URL}/wp-login.php`;
+const loginUrl = `${process.env.BASE_URL_ARAFAT}/wp-login.php`;
 
 /**
  * Function to authenticate a user and save their session state.
@@ -23,8 +23,8 @@ async function authenticateUser(page, username, password, storageFile, role) {
   // Determine expected landing URL
   const expectedUrl =
     role === "subscriber"
-      ? `${process.env.BASE_URL}/wp-admin/profile.php`
-      : `${process.env.BASE_URL}/wp-admin/`;
+      ? `${process.env.BASE_URL_ARAFAT}/wp-admin/profile.php`
+      : `${process.env.BASE_URL_ARAFAT}/wp-admin/`;
 
   try {
     await page.waitForURL(expectedUrl, { timeout: 60000 });
