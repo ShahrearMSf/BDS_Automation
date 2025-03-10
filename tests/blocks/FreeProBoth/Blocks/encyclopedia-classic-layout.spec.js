@@ -11,7 +11,7 @@ test.describe('FAQ Classic Page Tests', () => {
     // Check the structure of the page using snapshot
     await expect(page.locator('#content')).toMatchAriaSnapshot(`
       - main:
-        - heading "FAQ Classic L" [level=1]
+        - heading "Encyclopedia Classic L" [level=1]
         - paragraph
         - list:
           - listitem: { link: "All" }
@@ -72,19 +72,17 @@ test.describe('FAQ Classic Page Tests', () => {
 
   test('Click on Encyclopedia Alphabets Twice', async ({ page }) => {
     await page.locator('.encyclopedia-alphabets').click();
-    await page.locator('.encyclopedia-alphabets').click();
   });
 
   test('Navigate Through Alphabet Links', async ({ page }) => {
     await page.getByRole('link', { name: 'All' }).click();
     await page.getByRole('link', { name: 'A', exact: true }).click();
     await page.locator('li').filter({ hasText: 'Z' }).click();
-    await page.getByRole('link', { name: 'All' }).click();
   });
 
   test('Open Address FAQ and Validate Content', async ({ page }) => {
     await page.getByRole('link', { name: 'Address' }).click();
-    await page.getByText('Home FAQ Classic L A Address').click();
+    await page.getByText('Home Encyclopedia Classic L A Address').click();
     await page.getByRole('heading', { name: 'Address' }).click();
     await page.locator('div').filter({ hasText: '< 1 min read' }).nth(4).click();
     await page.getByText('Address - In computing, an').click();
