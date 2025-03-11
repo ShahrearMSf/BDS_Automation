@@ -88,7 +88,29 @@ test.describe('FAQ Classic Page Tests', () => {
     await page.getByText('Address - In computing, an').click();
   });
 
+  test('Verify A-Z menu item count', async ({ page }) => {
+    const expectedCount = 26; // A-Z
+    const menuItems = page.locator('#content listitem');
+  
+    await expect(menuItems).toHaveCount(expectedCount, { timeout: 10000 });
+  });
+  
+  test('Verify A-Z menu item visibility', async ({ page }) => {
+    const expectedLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  
+    for (const letter of expectedLetters) {
+      const letterLocator = page.locator(`#content listitem >> text=${letter}`);
+      await expect(letterLocator).toBeVisible({ timeout: 5000 });
+    }
+  });
+
+
+  
+  
+  
+
 });
+
 
 
 
