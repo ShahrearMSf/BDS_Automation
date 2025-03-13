@@ -127,3 +127,37 @@ test("Section 3 - right then", async ({ page }) => {
   await expect(activeAnswer).toBeVisible();
   await expect(activeGroup).toHaveClass(/active/);
 });
+
+test("Icon Test Visibility - Feb 11, 2025", async ({ page }) => {
+  await page.locator(".betterdocs-faq-tab").nth(33).click();
+
+  await expect(page.locator(".betterdocs-faq-tab").nth(33)).toHaveClass(
+    /active/
+  );
+
+  const img = page.locator(".betterdocs-faq-tab.active img");
+  await expect(img).toBeVisible();
+  await expect(img).toHaveAttribute("src", /OIF\.jpg/);
+
+  const activeContent = page.locator(".betterdocs-faq-list-content.active");
+  await expect(activeContent).toBeVisible();
+
+  const groups = activeContent.locator(".betterdocs-faq-group");
+  await expect(groups).toHaveCount(5);
+
+  for (let i = 0; i < 5; i++) {
+    const group = groups.nth(i);
+    const answer = group.locator(".betterdocs-faq-main-content");
+
+    await expect(answer).not.toBeVisible();
+    await expect(group).not.toHaveClass(/active/);
+
+    await group.locator(".betterdocs-faq-post").click();
+    await expect(answer).toBeVisible();
+    await expect(group).toHaveClass(/active/);
+
+    await group.locator(".betterdocs-faq-post").click();
+    await expect(answer).not.toBeVisible();
+    await expect(group).not.toHaveClass(/active/);
+  }
+});
