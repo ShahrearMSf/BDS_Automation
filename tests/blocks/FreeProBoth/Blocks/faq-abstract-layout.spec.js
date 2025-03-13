@@ -1,3 +1,6 @@
+//icon, image are not available in this layout
+
+
 import { test, expect } from '@playwright/test';
 
 test.describe('FAQ Retro Layout Tests', () => {
@@ -15,7 +18,9 @@ test('Checking Heading', async ({ page }) => {
 test('Checking Closed FAQ', async ({ page }) => {
   await page.getByRole('heading', { name: 'Heeloooo thiiisss teeest' }).click();
   await page.locator('.betterdocs-faq-post').first().click();
+  //checking text
   await page.locator('ul').filter({ hasText: 'Cutie pie Thank you bro Cutie' }).getByRole('paragraph').click();
+  //closing modal
   await page.locator('ul').filter({ hasText: 'Cutie pie Thank you bro Cutie' }).getByRole('img').first().click();
   });
 
