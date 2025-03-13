@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 test.beforeEach(async ({ page }) => {
-  await page.goto(`${process.env.BASE_URL_MSF}/faq/`);
+  await page.goto(`${process.env.BASE_URL_MSF}/faq-modern-l/`);
   await page.waitForLoadState("domcontentloaded");
 });
 

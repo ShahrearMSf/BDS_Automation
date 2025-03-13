@@ -44,6 +44,7 @@ test.describe('Multiple KB Tab Tests', () => {
   });
 
   test('Click on second "C" div in an article', async ({ page }) => {
+    await page.getByRole('link', { name: 'B', exact: true }).click();
     await page.getByRole('article').locator('div').filter({ hasText: 'C' }).nth(1).click();
   });
 
