@@ -3,7 +3,7 @@
 
 import { test, expect } from '@playwright/test';
 
-test.describe('FAQ Retro Layout Tests', () => {
+test.describe('FAQ Abstract Layout Tests', () => {
   
   test.beforeEach(async ({ page }) => {
     // Navigate to the page once before each test
@@ -22,13 +22,18 @@ test('Checking Closed FAQ', async ({ page }) => {
   await page.locator('ul').filter({ hasText: 'Cutie pie Thank you bro Cutie' }).getByRole('paragraph').click();
   //closing modal
   await page.locator('ul').filter({ hasText: 'Cutie pie Thank you bro Cutie' }).getByRole('img').first().click();
+  //heading visibility test
+  await page.getByText('Cutie pie').first().click();
+
   });
 
 
 test('Checking Open FAQ', async ({ page }) => {
 
   await page.getByText('Hello hui').nth(1).click();
+  //checking text
   await page.locator('ul').filter({ hasText: 'Hello hui Hello hui' }).getByRole('paragraph').click();
+  //closing modal
   await page.locator('ul').filter({ hasText: 'Hello hui Hello hui' }).getByRole('img').nth(1).click();
   });
 
