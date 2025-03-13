@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('FAQ Retro Page Tests', () => {
+test.describe('FAQ Retro Layout Tests', () => {
   
   test.beforeEach(async ({ page }) => {
     // Navigate to the page once before each test
