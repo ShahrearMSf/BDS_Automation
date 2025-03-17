@@ -39,4 +39,4 @@ test('Checking Open FAQ', async ({ page }) => {
 
 });
 
-//here test has been done on visibility, functionality of a close FAQ and a close FAW, also load more buton
+//here test has been done on visibility, functionality of a close FAQ and a close FAW, also load more button
