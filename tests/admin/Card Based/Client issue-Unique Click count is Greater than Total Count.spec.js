@@ -13,6 +13,19 @@ test.describe("BetterDocs Analytics - Views Validation", () => {
     await adminPage.goto(`${baseUrl}/wp-admin/admin.php?page=betterdocs-analytics`);
   });
 
+
+
+  test("Hover over the graph and check tooltip visibility", async () => {
+    const graphPoint = adminPage.locator('foreignobject').first(); // Select first graph point
+    await graphPoint.hover();
+    await adminPage.waitForTimeout(1000); // Wait for tooltip to appear
+
+    // Ensure tooltip is visible
+    const tooltip = adminPage.locator('.apexcharts-tooltip.apexcharts-theme-dark');
+    expect(await tooltip.isVisible()).toBeTruthy();
+  });
+
+  
   test("Validate Total Views vs Unique Views", async () => {
     // Extract total views
     await adminPage.getByRole('tab', { name: 'Views' }).click();
@@ -25,16 +38,6 @@ test.describe("BetterDocs Analytics - Views Validation", () => {
 
     // Assert that total Views > Unique Views
     expect(totalViews).toBeGreaterThan(totalUniqueViews);
-  });
-
-  test("Hover over the graph and check tooltip visibility", async () => {
-    const graphPoint = adminPage.locator('foreignobject').first(); // Select first graph point
-    await graphPoint.hover();
-    await adminPage.waitForTimeout(1000); // Wait for tooltip to appear
-
-    // Ensure tooltip is visible
-    const tooltip = adminPage.locator('.apexcharts-tooltip.apexcharts-theme-dark');
-    expect(await tooltip.isVisible()).toBeTruthy();
   });
 
 
