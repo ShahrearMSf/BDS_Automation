@@ -1,3 +1,4 @@
+//will take time to check in all blocks widgets and short codes
 import { test, expect } from '@playwright/test';
 
 const pageSlugs = [
