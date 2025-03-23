@@ -27,7 +27,7 @@ test.describe("BetterDocs Analytics - Views Validation", () => {
     expect(await tooltip.isVisible()).toBeTruthy();
   });
 
-  
+
 
   test("Validate Total Views vs Unique Views", async () => {
     // Navigate to the Views tab
@@ -45,31 +45,37 @@ test.describe("BetterDocs Analytics - Views Validation", () => {
     expect(totalViews).toBeGreaterThan(totalUniqueViews);
 });
 
+// test("Check if views in the table are valid (Total Views > Unique Views)", async () => {
+//   // Extract data from the table
+//   const rows = await adminPage.$$eval('table tbody tr', rows => {
+//     return rows.map(row => {
+//       const viewsText = row.querySelector('td:nth-child(4)')?.innerText.trim() || '';
+//       const uniqueViewsText = row.querySelector('td:nth-child(5)')?.innerText.trim() || '';
 
+//       // Log the raw data for debugging
+//       console.log(`Raw data for row: ViewsText = "${viewsText}", UniqueViewsText = "${uniqueViewsText}"`);
 
+//       // Convert to numbers
+//       const views = parseInt(viewsText, 10);
+//       const uniqueViews = parseInt(uniqueViewsText, 10);
 
+//       // Return values, or NaN if they are invalid
+//       return { views, uniqueViews, viewsText, uniqueViewsText };
+//     });
+//   });
 
+//   // Validate that Total Views > Unique Views for each row
+//   rows.forEach((row, index) => {
+//     if (isNaN(row.views) || isNaN(row.uniqueViews)) {
+//       console.log(`Row ${index + 1}: Invalid data. Views or Unique Views are not numbers.`);
+//       console.log(`Row ${index + 1}: Views = ${row.views}, Unique Views = ${row.uniqueViews}`);
+//     } else {
+//       console.log(`Row ${index + 1}: Total Views (${row.views}) > Unique Views (${row.uniqueViews})`);
+//       expect(row.views).toBeGreaterThan(row.uniqueViews);
+//     }
+//   });
+// });
 
-  // test("Validate Views vs Unique Views in Table Data", async () => {
-  //   // Scroll down to the Leading Docs table
-  //   await adminPage.getByRole('tab', { name: 'Views' }).click();
-
-  //   await adminPage.locator("text=Leading Docs").click();
-
-  //   // Loop through table rows and validate Views > Unique Views
-  //   const rows = await adminPage.locator("table tbody tr").elementHandles();
-
-  //   for (const row of rows) {
-  //     const viewsText = await row.locator('td:nth-child(4)').innerText(); // Adjust index if needed
-  //     const uniqueViewsText = await row.locator('td:nth-child(5)').innerText(); // Adjust index if needed
-
-  //     const views = parseInt(viewsText, 10);
-  //     const uniqueViews = parseInt(uniqueViewsText, 10);
-
-  //     // Assert that Views > Unique Views in each row
-  //     expect(views).toBeGreaterThan(uniqueViews);
-  //   }
-  // });
 
   test.afterAll(async () => {
     await adminContext.close();
