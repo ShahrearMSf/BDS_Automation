@@ -1,14 +1,14 @@
 import { test, expect } from "@playwright/test";
 
 test.beforeEach(async ({ page }) => {
-  await page.goto(`${process.env.BASE_URL_MSF}/category-box-card-l/`);
+  await page.goto(`${process.env.BASE_URL_MSF}/category-box-box-l/`);
   await page.waitForLoadState("domcontentloaded");
 });
 
-test("Category Box Card L - Main Heading", async ({ page }) => {
+test("Category Box Box Layout - Main Heading", async ({ page }) => {
   const mainHeading = page.locator(".entry-title");
   await expect(mainHeading).toBeVisible();
-  await expect(mainHeading).toHaveText("Category Box Card L");
+  await expect(mainHeading).toHaveText("Category Box Box L");
 });
 
 test("Card 1 - Alif (Default Icon)", async ({ page }) => {
@@ -23,9 +23,10 @@ test("Card 1 - Alif (Default Icon)", async ({ page }) => {
 
   await expect(card.locator("h2")).toHaveText("Alif");
 
+  //check with regex d+s+w+ to match "2 docs" and "2 docs" with leading and trailing spaces
   await expect(
     card.locator(".betterdocs-category-items-counts span")
-  ).toHaveText(/^\s*\d+\s+\s*$/i);
+  ).toHaveText(/^\s*\d+\s+Docs\s*$/i);
 
   const icon = card.locator("img.betterdocs-category-icon-img");
   await expect(icon).toBeVisible();
@@ -49,7 +50,7 @@ test("Card 2 - All In All MSF (Custom Icon)", async ({ page }) => {
 
   await expect(
     card.locator(".betterdocs-category-items-counts span")
-  ).toHaveText(/^\s*\d+\s+\s*$/i);
+  ).toHaveText(/^\s*\d+\s+Docs\s*$/i);
 
   const icon = card.locator("img.betterdocs-category-icon-img");
   await expect(icon).toBeVisible();
@@ -74,7 +75,7 @@ test("Card 3 - API & Development (Custom Icon)", async ({ page }) => {
 
   await expect(
     card.locator(".betterdocs-category-items-counts span")
-  ).toHaveText(/^\s*\d+\s+\s*$/i);
+  ).toHaveText(/^\s*\d+\s+Docs\s*$/i);
 
   const icon = card.locator("img.betterdocs-category-icon-img");
   await expect(icon).toBeVisible();
