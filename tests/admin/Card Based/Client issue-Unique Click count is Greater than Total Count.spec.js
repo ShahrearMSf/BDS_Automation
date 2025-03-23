@@ -28,19 +28,25 @@ test.describe("BetterDocs Analytics - Views Validation", () => {
   });
 
   
+
   test("Validate Total Views vs Unique Views", async () => {
-    // Extract total views
+    // Navigate to the Views tab
     await adminPage.getByRole('tab', { name: 'Views' }).click();
 
-    await adminPage.getByRole('heading', { name: 'Total Views' }).click();
-    const totalViews = parseInt(await adminPage.getByRole('heading', { name: '477' }).innerText(), 10);
+    // Extract Total Views
+    const totalViewsElement = adminPage.locator("h3.btd-chart-counter-count").nth(0);
+    const totalViews = parseInt(await totalViewsElement.innerText(), 10);
 
-    await adminPage.getByRole('heading', { name: 'Unique Views' }).click();
-    const totalUniqueViews = parseInt(await adminPage.getByRole('heading', { name: '446' }).innerText(), 10);
+    // Extract Unique Views
+    const uniqueViewsElement = adminPage.locator("h3.btd-chart-counter-count").nth(1);
+    const totalUniqueViews = parseInt(await uniqueViewsElement.innerText(), 10);
 
-    // Assert that total Views > Unique Views
+    // Assert that Total Views > Unique Views
     expect(totalViews).toBeGreaterThan(totalUniqueViews);
-  });
+});
+
+
+
 
 
 
