@@ -1,5 +1,3 @@
-//will work in this in future
-
 import { test, expect } from "@playwright/test";
 
 // Load environment variables
@@ -51,36 +49,7 @@ test.describe("BetterDocs Analytics - Views Validation", () => {
     expect(totalViews).toBeGreaterThan(totalUniqueViews);
   });
 
-  // test("Check if views in the table are valid (Total Views > Unique Views)", async () => {
-  //   // Extract data from the table
-  //   const rows = await adminPage.$$eval('table tbody tr', rows => {
-  //     return rows.map(row => {
-  //       const viewsText = row.querySelector('td:nth-child(4)')?.innerText.trim() || '';
-  //       const uniqueViewsText = row.querySelector('td:nth-child(5)')?.innerText.trim() || '';
-
-  //       // Log the raw data for debugging
-  //       console.log(`Raw data for row: ViewsText = "${viewsText}", UniqueViewsText = "${uniqueViewsText}"`);
-
-  //       // Convert to numbers
-  //       const views = parseInt(viewsText, 10);
-  //       const uniqueViews = parseInt(uniqueViewsText, 10);
-
-  //       // Return values, or NaN if they are invalid
-  //       return { views, uniqueViews, viewsText, uniqueViewsText };
-  //     });
-  //   });
-
-  //   // Validate that Total Views > Unique Views for each row
-  //   rows.forEach((row, index) => {
-  //     if (isNaN(row.views) || isNaN(row.uniqueViews)) {
-  //       console.log(`Row ${index + 1}: Invalid data. Views or Unique Views are not numbers.`);
-  //       console.log(`Row ${index + 1}: Views = ${row.views}, Unique Views = ${row.uniqueViews}`);
-  //     } else {
-  //       console.log(`Row ${index + 1}: Total Views (${row.views}) > Unique Views (${row.uniqueViews})`);
-  //       expect(row.views).toBeGreaterThan(row.uniqueViews);
-  //     }
-  //   });
-  // });
+//Arafat bhai did the comparision in the table section between unique count vs total
 
   test("Validate Views >= Unique Views for each table row", async () => {
     // Navigate to the analytics page
@@ -114,6 +83,9 @@ test.describe("BetterDocs Analytics - Views Validation", () => {
     await adminContext.close();
   });
 });
+
+
+//row-code
 
 // import { test, expect } from "@playwright/test";
 
