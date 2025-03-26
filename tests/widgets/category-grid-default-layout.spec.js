@@ -3,10 +3,10 @@ import { test, expect } from '@playwright/test';
 test('test', async ({ page }) => {
     await page.goto(`${process.env.BASE_URL_MSF}/category-grid-2/`); 
 
-    // const bodyLocator = page.locator('[data-testid="444597c"]'); 
-    // const Body = bodyLocator.locator("div.elementor-grid-mobile-1");
+    const bodyLocator = page.getByTestId("680a016");
+    const Body = bodyLocator.locator("div.elementor-element");
 
-    // await expect(Body).toBeVisible();
+    await expect(Body).toBeVisible();
 
     const gridWrapper = page.locator(".betterdocs-category-grid-wrapper");
     await expect(gridWrapper).toBeVisible();
