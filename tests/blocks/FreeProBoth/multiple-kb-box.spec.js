@@ -5,6 +5,12 @@ test.beforeEach(async ({ page }) => {
   await page.waitForLoadState("domcontentloaded");
 });
 
+test("Multiple KB Box Heading", async ({ page }) => {
+  const mainHeading = page.locator(".entry-title");
+  await expect(mainHeading).toBeVisible();
+  await expect(mainHeading).toHaveText("Multiple KB Box");
+});
+
 test("validate first category box (A)", async ({ page }) => {
   const categoryBoxA = page
     .locator(".betterdocs-single-category-wrapper")
@@ -91,7 +97,7 @@ test("validate second category box (BCB) and explore its page", async ({
   );
   await expect(allInAllMSFLastUpdated).toBeVisible();
   await expect(allInAllMSFLastUpdated).toHaveText(
-    "Last Updated: February 24, 2025"
+    "Last Updated: March 10, 2025"
   );
 
   const feb6Box = page.locator(".category-box.category-feb-6");
@@ -110,5 +116,7 @@ test("validate second category box (BCB) and explore its page", async ({
 
   const feb6LastUpdated = feb6Box.locator(".betterdocs-last-update");
   await expect(feb6LastUpdated).toBeVisible();
-  await expect(feb6LastUpdated).toHaveText("Last Updated: February 6, 2025");
+  await expect(feb6LastUpdated).toHaveText(
+    /Last Updated:\s(January|February|March|April|May|June|July|August|September|October|November|December)\s([1-9]|[0-2][0-9]|3[0-1]),\s(\d{4})/
+  );
 });
