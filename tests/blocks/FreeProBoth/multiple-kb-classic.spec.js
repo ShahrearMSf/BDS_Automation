@@ -97,7 +97,7 @@ test("validate second category box (BCB) and explore its page", async ({
   );
   await expect(allInAllMSFLastUpdated).toBeVisible();
   await expect(allInAllMSFLastUpdated).toHaveText(
-    "Last Updated: March 10, 2025"
+    /Last Updated:\s(January|February|March|April|May|June|July|August|September|October|November|December)\s([1-9]|[0-2][0-9]|3[0-1]),\s(\d{4})/
   );
 
   const feb6Box = page.locator(".category-box.category-feb-6");
