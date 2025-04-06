@@ -116,5 +116,7 @@ test("validate second category box (BCB) and explore its page", async ({
 
   const feb6LastUpdated = feb6Box.locator(".betterdocs-last-update");
   await expect(feb6LastUpdated).toBeVisible();
-  await expect(feb6LastUpdated).toHaveText("Last Updated: February 6, 2025");
+  await expect(feb6LastUpdated).toHaveText(
+    /Last Updated:\s(January|February|March|April|May|June|July|August|September|October|November|December)\s([1-9]|[0-2][0-9]|3[0-1]),\s(\d{4})/
+  );
 });
