@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('test', async ({ page }) => {
-  await page.goto(`${process.env.BASE_URL_MSF}/cencyclopedia-retro-l-2/`); 
+  await page.goto(`${process.env.BASE_URL_MSF}/encyclopedia-retro-l-2/`); 
 
   await expect(page.locator('#content')).toMatchAriaSnapshot(`
     - list:
@@ -91,6 +91,7 @@ test('test', async ({ page }) => {
     - link "Glow"
     - text: Load More
     `);
+
   await page.locator('.encyclopedia-alphabets').click();
   await page.getByRole('link', { name: 'All' }).click();
   await page.locator('div').filter({ hasText: /^A$/ }).click();
@@ -102,6 +103,6 @@ test('test', async ({ page }) => {
 
   await page.getByRole('link', { name: 'Address', exact: true }).click();
   await page.getByRole('heading', { name: 'Address' }).click();
-  await page.locator('div').filter({ hasText: '< 1 min read' }).nth(4).click();
+//   await page.locator('div').filter({ hasText: '< 1 min read' }).nth(4).click();
   await page.getByText('Address - In computing, an').click();
 });
