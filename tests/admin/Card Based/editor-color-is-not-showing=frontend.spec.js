@@ -8,17 +8,18 @@ test.describe("Editor Styling is not working", () => {
     adminPage = await adminContext.newPage();
   });
 
-  test.afterAll(async () => {
-    await adminPage.close();
-  });
+  // test.afterAll(async () => {
+  //   await adminPage.close();
+  // });
 
-  test('Go to BetterDocs Add New page', async () => {
-    await adminPage.goto("/wp-admin/index.php");
-    await adminPage.getByRole('link', { name: 'BetterDocs', exact: true }).click();
-    await adminPage.locator('#toplevel_page_betterdocs-admin').getByRole('link', { name: 'Add New' }).click();
-  });
+  // test('Go to BetterDocs Add New page', async () => {
+  //   await adminPage.goto("/wp-admin/index.php");
+  //   await adminPage.getByRole('link', { name: 'BetterDocs', exact: true }).click();
+  //   await adminPage.locator('#toplevel_page_betterdocs-admin').getByRole('link', { name: 'Add New' }).click();
+  // });
 
   test('Add and style First Heading block', async () => {
+    await adminPage.goto("/wp-admin/post-new.php?post_type=docs&lang=en");
     await adminPage.getByLabel('Add title').fill('Playwright Test for Editor');
     await adminPage.getByLabel('Add default block').click();
     await adminPage.getByLabel('Block Inserter').click();
@@ -48,14 +49,16 @@ test.describe("Editor Styling is not working", () => {
   // });
 
   test('Publish the doc', async () => {
+    // await adminPage.getByLabel('Save draft').click();
     await adminPage.getByRole('button', { name: 'Publish', exact: true }).click();
     await adminPage.getByLabel('Editor publish').getByRole('button', { name: 'Publish', exact: true }).click();
-  // });
+
 
   // test('View the doc and verify headings', async () => {
-    await adminPage.waitForTimeout(300000);
     await adminPage.getByText('View Docs').click();
     await adminPage.getByRole('heading', { name: 'First Heading #' }).click();
+
+    // await adminPage.getByRole('heading', { name: 'First Heading #' }).click();
     await adminPage.getByRole('heading', { name: 'Second Heading #' }).click();
   });
 
