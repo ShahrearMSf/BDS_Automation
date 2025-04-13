@@ -9,8 +9,6 @@ test.describe('Category Archive List L1 Tests - Heading Color Checks', () => {
   const headingTests = [
     { text: 'Role Overview', color: 'rgb(0, 208, 132)' }, // vivid green cyan
     { text: 'Collision with Developer', color: 'rgb(6, 147, 227)' }, // vivid cyan blue
-    // { text: 'Interaction with Support', color: 'rgb(155, 81, 224)' }, // vivid purple
-    // { text: 'Collaboration with Your Own Team', color: 'rgb(252, 185, 0)' }, // luminous vivid amber
   ];
 
   for (const { text, color } of headingTests) {
