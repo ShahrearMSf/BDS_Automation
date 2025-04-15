@@ -137,9 +137,10 @@ test('Encyclopedia Rest', async ({ page }) => {
       - img
       - text: < 1 min read
     `);
+  });
 
-     
-  await page.getByRole('link', { name: 'All' }).click();
+  test('Encyclopedia Load More Button', async ({ page }) => {
+
   await page.getByText('আরও টেক্সট দেখুন').click();
   await page.locator('div').filter({ hasText: /^M$/ }).click();
 });
