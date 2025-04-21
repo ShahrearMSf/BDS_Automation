@@ -6,24 +6,24 @@ test.describe('Encyclopedia Retro - Basic Interactions', () => {
   });
 
 
-test('test', async ({ page }) => {
+test('All The MKB', async ({ page }) => {
   await expect(page.locator('#el-betterdocs-cat-box-1ddc322')).toMatchAriaSnapshot(`
     - link "betterdocs-category-icon Dabang Muammar 3 Shahrear":
       - img "betterdocs-category-icon"
       - heading "Dabang" [level=1]
-    - link /betterdocs-category-icon December \\d+ A Muammar 1 MSF/:
+    - link /betterdocs-category-icon December 15 A Muammar 1 MSF/:
       - img "betterdocs-category-icon"
       - heading /December \\d+ A/ [level=1]
-    - link /betterdocs-category-icon December \\d+ B Muammar 1 MSF/:
+    - link /betterdocs-category-icon December 15 B Muammar 1 MSF/:
       - img "betterdocs-category-icon"
       - heading /December \\d+ B/ [level=1]
-    - link /betterdocs-category-icon Feb \\d+ Muammar 1 MSF/:
+    - link /betterdocs-category-icon Feb 25 Muammar 1 MSF/:
       - img "betterdocs-category-icon"
       - heading /Feb \\d+/ [level=1]
     - link "Holiday Today is Tuesday Muammar 6 Shahrear":
       - heading "Holiday" [level=1]
       - paragraph: Today is Tuesday
-    - link /June \\d+ Today is June \\d+ Muammar 3 Shahrear/:
+    - link /June \\d+ Today is June 11 Muammar 3 Shahrear/:
       - heading /June \\d+/ [level=1]
       - paragraph: /Today is June \\d+/
     - link "betterdocs-category-icon Loyalty Management Muammar 4 Shahrear":
@@ -33,8 +33,15 @@ test('test', async ({ page }) => {
       - img "betterdocs-category-icon"
       - heading "Mahedi bhai" [level=1]
     `);
+  });
+
+  test('1 MKB', async ({ page }) => {
+
   await expect(page.locator('#el-betterdocs-cat-box-1ddc322')).toMatchAriaSnapshot(`- heading "Dabang" [level=1]`);
   await expect(page.locator('#el-betterdocs-cat-box-1ddc322')).toMatchAriaSnapshot(`- text: Muammar 3 Shahrear`);
+  });
+
+  test('Workflow of a MKB', async ({ page }) => {
 
   await page.getByRole('link', { name: 'betterdocs-category-icon Loyalty Management Muammar 4 Shahrear' }).click();
   await expect(page.locator('body')).toMatchAriaSnapshot(`- heading "Benefit, Reward, Voucher & Promotion Management" [level=2]`);
