@@ -1,3 +1,6 @@
+//screenshot of passing all tests on April 22, 2025
+//if fails someday check that page may have some widget apart from BetterDosc plugin
+
 import { test, expect } from '@playwright/test';
 
 const pageSlugs = [
