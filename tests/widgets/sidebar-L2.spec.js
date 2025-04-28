@@ -17,4 +17,12 @@ test('test', async ({ page }) => {
  
 });
 
+test('Nested subcatagory', async ({ page }) => {
+
+  await page.getByRole('link', { name: 'Child 1' }).click();
+  await page.getByRole('link', { name: 'How To Sign Up For Updates?' }).click();
+  await page.getByRole('heading', { name: 'How To Sign Up For Updates?' }).click();
+
+});
+
 });
