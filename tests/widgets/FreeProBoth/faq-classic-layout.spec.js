@@ -11,10 +11,6 @@ test('test1', async ({ page }) => {
   await page.getByRole('heading', { name: 'Heeloooo thiiisss teeest' }).click();
   await page.locator('.betterdocs-faq-post-icon-group').first().click();
 
-//     });
-
-// test('test2', async ({ page }) => {
-
 
   await page.locator('ul').filter({ hasText: 'Cutie pie Thank you bro Cutie' }).getByRole('paragraph').click();
   await page.locator('ul').filter({ hasText: 'Cutie pie Thank you bro Cutie' }).locator('path').first().click();
