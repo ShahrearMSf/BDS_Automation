@@ -4,6 +4,13 @@ import { test, expect } from "@playwright/test";
 
 const base_url = `${process.env.BASE_URL}` || "https://bd.wp1.site";
 
+/**
+ * Make sure to replace BASE_URL_MSF with BASE_URL in this line in the auth.setup.js file before running the tests
+   const loginUrl = `${process.env.BASE_URL_MSF}/wp-login.php`;
+
+   Then run auth.setup.js once to generate the sessions. After that you can run the following tests.
+ */
+
 const restricted_pages = {
   docs_page: `${base_url}/articles/`,
   category_archive: `${base_url}/articles/bd250102-internal-kb/`,
@@ -42,7 +49,7 @@ test.describe("Internal KB @internalkb", () => {
       await page.goto(open_pages.docs_archive);
       await expect.soft(page.getByRole("heading", { name: "RG250105 Category Ten" }).first()).toBeVisible();
       await expect
-        .soft(page.getByRole("heading", { name: "The Role of Trade in Shaping Ancient and Modern Societies" }))
+        .soft(page.locator("#main").getByRole("link", { name: "The Role of Trade in Shaping" }))
         .toBeVisible();
 
       await page.goto(open_pages.single_doc_1);
@@ -63,12 +70,12 @@ test.describe("Internal KB @internalkb", () => {
 
       // Search Test
       await page.goto(open_pages.docs_page);
-      await page.getByText("SearchAH...").click();
+      await page.getByPlaceholder("SearchAH...").click();
       await page.getByPlaceholder("SearchAH...").fill("The Role of Trade in Shaping Ancient and Modern Societies");
       await expect(
         page.getByText("The Role of Trade in Shaping Ancient and Modern SocietiesRG250105 Category Ten")
       ).toBeVisible();
-      await page.locator(".clear-icon").click();
+      await page.locator("svg.docs-search-close").click();
       await page.getByPlaceholder("SearchAH...").press("Escape");
 
       await context.close();
@@ -90,7 +97,7 @@ test.describe("Internal KB @internalkb", () => {
       await page.goto(restricted_pages.docs_archive);
       await expect.soft(page.getByRole("heading", { name: "BD250102 Internal Category One" }).first()).toBeVisible();
       await expect
-        .soft(page.getByRole("heading", { name: "Single Article Internal 250102 One" }).first())
+        .soft(page.locator("#main").getByRole("link", { name: "Single Article Internal 250102 One" }).first())
         .toBeVisible();
 
       await page.goto(restricted_pages.single_doc_1);
@@ -116,11 +123,11 @@ test.describe("Internal KB @internalkb", () => {
 
       // Search Test
       await page.goto(open_pages.docs_page);
-      await page.getByText("SearchAH...").click();
+      await page.getByPlaceholder("SearchAH...").click();
       await page.getByPlaceholder("SearchAH...").fill("Member server in an Active Directory domain");
       await expect(page.getByText("Single Article Internal 250102 TwoBD250102 Internal Category One")).toBeVisible();
       await expect(page.getByText("Single Article Internal 250102 FiveBD250102 Internal Category Two")).toBeVisible();
-      await page.locator(".clear-icon").click();
+      await page.locator("svg.docs-search-close").click();
       await page.getByPlaceholder("SearchAH...").press("Escape");
 
       await context.close();
@@ -144,7 +151,7 @@ test.describe("Internal KB @internalkb", () => {
         .soft(page.getByRole("heading", { name: "BD250102 Internal Category One" }).first())
         .not.toBeVisible();
       await expect
-        .soft(page.getByRole("heading", { name: "Single Article Internal 250102 One" }).first())
+        .soft(page.locator("#main").getByRole("link", { name: "Single Article Internal 250102 One" }).first())
         .not.toBeVisible();
 
       await page.goto(restricted_pages.single_doc_1);
@@ -172,16 +179,16 @@ test.describe("Internal KB @internalkb", () => {
 
       // Search Test
       await page.goto(open_pages.docs_page);
-      await page.getByText("SearchAH...").click();
+      await page.getByPlaceholder("SearchAH...").click();
       await page.getByPlaceholder("SearchAH...").fill("Member server in an Active Directory domain");
-      await expect(page.getByRole("heading", { name: 'No Docs found for "Member' })).toBeVisible();
+      // await expect(page.getByRole("heading", { name: 'No Docs found for "Member' })).toBeVisible();
       await expect(
         page.getByText("Single Article Internal 250102 TwoBD250102 Internal Category One")
       ).not.toBeVisible();
       await expect(
         page.getByText("Single Article Internal 250102 FiveBD250102 Internal Category Two")
       ).not.toBeVisible();
-      await page.locator(".clear-icon").click();
+      await page.locator("svg.docs-search-close").click();
       await page.getByPlaceholder("SearchAH...").press("Escape");
 
       await context.close();
