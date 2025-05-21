@@ -13,7 +13,7 @@ test.describe("Improvement | Add pagination when the category number crosses 100
   });
 
 
-test('test', async ({ page }) => {
+test('test with 1st_10_50', async ({ page }) => {
 
   await adminPage.goto(`${baseUrl}/wp-admin/admin.php?page=betterdocs-admin`);
   await adminPage.getByRole('heading', { name: 'All Docs' }).click();
@@ -22,6 +22,12 @@ test('test', async ({ page }) => {
   await adminPage.getByRole('listitem', { name: '3' }).locator('a').click();
   await adminPage.locator('#betterdocs-dashboard-app select').selectOption('50');
   await adminPage.getByLabel('prev page').click();
+
+  }); 
+
+ test('test with 1st_30_70', async ({ page }) => { 
+  await adminPage.goto(`${baseUrl}/wp-admin/admin.php?page=betterdocs-admin`);
+  await adminPage.getByRole('heading', { name: 'All Docs' }).click();    
   await adminPage.locator('#betterdocs-dashboard-app select').selectOption('30');
   await adminPage.getByRole('listitem', { name: '4' }).locator('a').click();
   await adminPage.locator('#betterdocs-dashboard-app select').selectOption('70');
@@ -30,3 +36,5 @@ test('test', async ({ page }) => {
 });
 
 });
+
+// https://d.pr/i/rNEkhl test run
