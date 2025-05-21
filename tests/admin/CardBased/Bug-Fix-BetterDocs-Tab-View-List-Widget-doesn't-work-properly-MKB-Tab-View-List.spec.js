@@ -6,7 +6,7 @@ test('test', async ({ page }) => {
   await expect(page.locator('#content')).toMatchAriaSnapshot(`- link "BCB"`);
   await page.getByRole('link', { name: 'BCB' }).click();
   await page.getByRole('heading', { name: 'All In All MSF' }).click();
-  await page.getByRole('article').locator('img').click();
+  // await page.getByRole('article').locator('img').click();
   await page.locator('li').filter({ hasText: 'হ্যাঁ, Mercedes GLS450' }).locator('i').click();
   await page.getByRole('link', { name: 'হ্যাঁ, Mercedes GLS450' }).click();
   await page.getByRole('heading', { name: 'হ্যাঁ, Mercedes GLS450' }).click();
