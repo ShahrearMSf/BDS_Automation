@@ -1,3 +1,5 @@
+//https://d.pr/i/6Jcxae all tests run
+
 import { test, expect } from "@playwright/test";
 
 // Ensure to load environment variables before running tests
@@ -49,17 +51,31 @@ test.describe("Bug Fix | Adding Category while creating Doc does not show under 
     await adminPage.getByRole('button', { name: 'Search Categories' }).click();
     await adminPage.getByLabel('“Live of Pie” (Edit)').click();
 
-  });
 
-  test('Put the doc in trash', async ({ page }) => {
+    await adminPage.getByRole('link', { name: 'All Docs' }).click();
+    await adminPage.goto(`${baseUrl}/wp-admin/admin.php?page=betterdocs-admin`);
+    await adminPage.waitForTimeout(1000);
+    await adminPage.locator('section').filter({ hasText: 'Add New DocsAll DocsSelect' }).getByRole('list').getByRole('link').click();
+    await adminPage.getByPlaceholder('Search Doc').click();
+    await adminPage.getByPlaceholder('Search Doc').fill('what a beautiful day');
+    await adminPage.getByRole('cell', { name: '✓ What a beautiful day |' }).locator('label').click();
+    await adminPage.getByRole('button', { name: 'Move to Trash' }).click();
+    await adminPage.getByRole('button', { name: 'Yes' }).click();
+    await adminPage.locator('section').filter({ hasText: 'Add New DocsAll DocsSelect' }).getByRole('list').getByRole('link').click();
 
-    await adminPage.goto(`${baseUrl}/wp-admin/admin.php?mode=grid&page=betterdocs-admin`);
 
-    await page1.locator('section').filter({ hasText: 'Add New DocsAll DocsSelect' }).getByRole('list').getByRole('link').click();
-    await page1.getByRole('cell', { name: '✓ What a beautiful day |' }).locator('label').click();
-    await page1.getByRole('button', { name: 'Move to Trash' }).click();
-    await page1.getByRole('button', { name: 'Yes' }).click();
-    await page1.locator('section').filter({ hasText: 'Add New DocsAll DocsSelect' }).getByRole('list').getByRole('link').click();
+
+  // });
+
+  // test('Put the doc in trash', async ({ page }) => {
+
+  //   await adminPage.goto(`${baseUrl}/wp-admin/admin.php?mode=grid&page=betterdocs-admin`);
+
+  //   await page1.locator('section').filter({ hasText: 'Add New DocsAll DocsSelect' }).getByRole('list').getByRole('link').click();
+  //   await page1.getByRole('cell', { name: '✓ What a beautiful day |' }).locator('label').click();
+  //   await page1.getByRole('button', { name: 'Move to Trash' }).click();
+  //   await page1.getByRole('button', { name: 'Yes' }).click();
+  //   await page1.locator('section').filter({ hasText: 'Add New DocsAll DocsSelect' }).getByRole('list').getByRole('link').click();
   });
 
   test('Delete the category', async ({ page }) => {
