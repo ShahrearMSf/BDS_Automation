@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 // Ensure to load environment variables before running tests
 const baseUrl = process.env.BASE_URL_MSF;
 
-test.describe("BetterDocs 'betterdocs-admin' Class To Be Loaded Only In Betterdocs Pages", () => {
+test.describe("Add Classic UI Button To FAQ and Gloassary Section", () => {
   let adminContext, adminPage;
 
   test.beforeAll(async ({ browser }) => {
